@@ -1,2 +1,1 @@
-# dojo-starter
-init dojo world
+# Dojo starter world
