@@ -57,7 +57,7 @@ The command downloads the `dojoup` installation script and executes it.
 With `dojoup` installed, you can now build your example world using the following command:
 
 ```bash
-sozo build
+sozo build .
 ```
 
 This command compiles your project and prepares it for execution.
