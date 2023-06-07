@@ -81,8 +81,8 @@ mod tests {
 
     use dojo_examples::components::PositionComponent;
     use dojo_examples::components::MovesComponent;
-    use dojo_examples::systems::SpawnSystem;
-    use dojo_examples::systems::MoveSystem;
+    use dojo_examples::systems::Spawn;
+    use dojo_examples::systems::Move;
 
     #[test]
     #[available_gas(30000000)]
@@ -93,8 +93,8 @@ mod tests {
         components.append(MovesComponent::TEST_CLASS_HASH);
         // systems
         let mut systems = array::ArrayTrait::new();
-        systems.append(SpawnSystem::TEST_CLASS_HASH);
-        systems.append(MoveSystem::TEST_CLASS_HASH);
+        systems.append(Spawn::TEST_CLASS_HASH);
+        systems.append(Move::TEST_CLASS_HASH);
         // routes
         let mut routes = array::ArrayTrait::new();
         routes.append(
@@ -133,7 +133,7 @@ mod tests {
         world.execute('Spawn'.into(), spawn_call_data.span());
 
         let mut move_calldata = array::ArrayTrait::new();
-        move_calldata.append(MoveSystem::Direction::Right(()).into());
+        move_calldata.append(Move::Direction::Right(()).into());
         world.execute('Move'.into(), move_calldata.span());
 
         let world_address = world.contract_address;
