@@ -20,9 +20,9 @@ trait PositionTrait {
 impl PositionImpl of PositionTrait {
     fn is_zero(self: Position) -> bool {
         if self.x - self.y == 0 {
-            return bool::True(());
+            return true;
         }
-        bool::False(())
+        false
     }
 
     fn is_equal(self: Position, b: Position) -> bool {
@@ -40,9 +40,6 @@ fn test_position_is_zero() {
 #[available_gas(100000)]
 fn test_position_is_equal() {
     assert(
-        PositionTrait::is_equal(
-            Position { x: 420, y: 0 }, Position { x: 420, y: 0 }
-        ),
-        'not equal'
+        PositionTrait::is_equal(Position { x: 420, y: 0 }, Position { x: 420, y: 0 }), 'not equal'
     );
 }

@@ -57,7 +57,7 @@ The command downloads the `dojoup` installation script and executes it.
 With `dojoup` installed, you can now build your example world using the following command:
 
 ```bash
-sozo build .
+sozo build
 ```
 
 This command compiles your project and prepares it for execution.
@@ -67,7 +67,7 @@ This command compiles your project and prepares it for execution.
 [Katana RPC](https://book.dojoengine.org/framework/katana/overview.html) is the communication layer for your Dojo World. It allows different components of your world to communicate with each other. To start Katana RPC, use the following command:
 
 ```bash
-katana
+katana --allow-zero-max-fee
 ```
 
 ### Step 5: Migrate (Deploy) the World
@@ -79,6 +79,63 @@ sozo migrate
 ```
 
 Congratulations! You've successfully setup and deployed your first Dojo Autonomous World.
+
+---
+
+# Interacting With Your Local World
+
+Explore and interact with your locally deployed world! This guide will help you fetch schemas, inspect entities, and execute actions using `sozo`.
+
+If you have followed the example exactly and deployed on Katana you can use the following:
+
+World address: **0xeb752067993e3e1903ba501267664b4ef2f1e40f629a17a0180367e4f68428**
+
+Signer address: **0x2b97f0b24be59ecf4504a27ac2301179be7df44c4c7d9482cd7b36137bc0fa4**
+
+## Fetching Component Schemas
+
+Let's start by fetching the schema for the `Moves` component. Use the following command, replacing `<world-address>` with your world's address:
+
+```bash
+sozo component schema --world <world-address> Moves
+```
+
+You should get this in return:
+
+```rust
+struct Moves {
+   remaining: u8
+}
+```
+This structure indicates that the `Moves` component keeps track of the remaining moves as an 8-bit unsigned integer.
+
+## Inspecting an Entity's Component
+
+Let's check the remaining moves for an entity. In our examples, the entity is based on the caller address, so we'll use the address of the first Katana account as an example. Replace `<world-address>` and `<signer-address>` with your world's and entity's addresses respectively:
+
+```bash
+sozo component entity --world <world-address> Moves <signer-address>
+```
+
+If you haven't made an entity yet, it will return `0`.
+
+## Adding an Entity
+
+No entity? No problem! You can add an entity to the world by executing the `Spawn` system. Remember, there's no need to pass any call data as the system uses the caller's address for the database. Replace `<world-address>` with your world's address:
+
+```bash
+sozo execute --world <world-address> Spawn
+```
+
+## Refetching an Entity's Component
+
+After adding an entity, let's refetch the remaining moves with the same command we used earlier:
+
+```bash
+sozo component entity --world <world-address> Moves <signer-address>
+```
+
+Congratulations! You now have `10` remaining moves! You've made it this far, keep up the momentum and keep exploring your world!
 
 
 ### Next steps:
