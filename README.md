@@ -90,14 +90,14 @@ If you have followed the example exactly and deployed on Katana you can use the 
 
 World address: **0xeb752067993e3e1903ba501267664b4ef2f1e40f629a17a0180367e4f68428**
 
-Signer address: **0x2b97f0b24be59ecf4504a27ac2301179be7df44c4c7d9482cd7b36137bc0fa4**
+Signer address: **0x06f62894bfd81d2e396ce266b2ad0f21e0668d604e5bb1077337b6d570a54aea**
 
 ## Fetching Component Schemas
 
 Let's start by fetching the schema for the `Moves` component. Use the following command, replacing `<world-address>` with your world's address:
 
 ```bash
-sozo component schema --world <world-address> Moves
+sozo component schema --world 0xeb752067993e3e1903ba501267664b4ef2f1e40f629a17a0180367e4f68428 Moves
 ```
 
 You should get this in return:
@@ -114,7 +114,7 @@ This structure indicates that the `Moves` component keeps track of the remaining
 Let's check the remaining moves for an entity. In our examples, the entity is based on the caller address, so we'll use the address of the first Katana account as an example. Replace `<world-address>` and `<signer-address>` with your world's and entity's addresses respectively:
 
 ```bash
-sozo component entity --world <world-address> Moves <signer-address>
+sozo component entity --world 0xeb752067993e3e1903ba501267664b4ef2f1e40f629a17a0180367e4f68428 Moves 0x06f62894bfd81d2e396ce266b2ad0f21e0668d604e5bb1077337b6d570a54aea
 ```
 
 If you haven't made an entity yet, it will return `0`.
@@ -124,7 +124,7 @@ If you haven't made an entity yet, it will return `0`.
 No entity? No problem! You can add an entity to the world by executing the `Spawn` system. Remember, there's no need to pass any call data as the system uses the caller's address for the database. Replace `<world-address>` with your world's address:
 
 ```bash
-sozo execute --world <world-address> Spawn
+sozo execute --world 0xeb752067993e3e1903ba501267664b4ef2f1e40f629a17a0180367e4f68428 Spawn
 ```
 
 ## Refetching an Entity's Component
@@ -132,7 +132,7 @@ sozo execute --world <world-address> Spawn
 After adding an entity, let's refetch the remaining moves with the same command we used earlier:
 
 ```bash
-sozo component entity --world <world-address> Moves <signer-address>
+sozo component entity --world 0xeb752067993e3e1903ba501267664b4ef2f1e40f629a17a0180367e4f68428 Moves 0x06f62894bfd81d2e396ce266b2ad0f21e0668d604e5bb1077337b6d570a54aea
 ```
 
 Congratulations! You now have `10` remaining moves! You've made it this far, keep up the momentum and keep exploring your world!
