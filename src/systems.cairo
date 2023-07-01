@@ -1,5 +1,5 @@
 #[system]
-mod Spawn {
+mod spawn {
     use array::ArrayTrait;
     use traits::Into;
     use dojo::world::Context;
@@ -8,18 +8,17 @@ mod Spawn {
     use dojo_examples::components::Moves;
 
     fn execute(ctx: Context) {
-        set !(
-            ctx.world, ctx.origin.into(), (Moves { remaining: 10 }, Position { x: 0, y: 0 }, )
-        );
+        set !(ctx.world, ctx.origin.into(), (Moves { remaining: 10 }, Position { x: 0, y: 0 }, ));
         return ();
     }
 }
 
 #[system]
-mod Move {
+mod move {
     use array::ArrayTrait;
     use traits::Into;
     use dojo::world::Context;
+
     use dojo_examples::components::Position;
     use dojo_examples::components::Moves;
 
@@ -73,82 +72,46 @@ mod Move {
 
 #[cfg(test)]
 mod tests {
-    use core::traits::Into;
+    use core::traits::{Into, Default};
     use array::ArrayTrait;
 
-    use dojo::auth::systems::{Route, RouteTrait};
-    use dojo::interfaces::IWorldDispatcherTrait;
+    use dojo::world::IWorldDispatcherTrait;
 
     use dojo::test_utils::spawn_test_world;
 
-    use dojo_examples::components::PositionComponent;
-    use dojo_examples::components::MovesComponent;
-    use dojo_examples::systems::Spawn;
-    use dojo_examples::systems::Move;
+    use dojo_examples::components::position;
+    use dojo_examples::components::moves;
+    use dojo_examples::systems::spawn;
+    use dojo_examples::systems::move;
 
     #[test]
     #[available_gas(30000000)]
     fn test_move() {
-        let caller = starknet::contract_address_const::<0x1337>();
-        starknet::testing::set_account_contract_address(caller);
+        let caller = starknet::contract_address_const::<0x0>();
 
         // components
-        let mut components = array::ArrayTrait::new();
-        components.append(PositionComponent::TEST_CLASS_HASH);
-        components.append(MovesComponent::TEST_CLASS_HASH);
+        let mut components: Array = Default::default();
+        components.append(position::TEST_CLASS_HASH);
+        components.append(moves::TEST_CLASS_HASH);
         // systems
-        let mut systems = array::ArrayTrait::new();
-        systems.append(Spawn::TEST_CLASS_HASH);
-        systems.append(Move::TEST_CLASS_HASH);
-        // routes
-        let mut routes = array::ArrayTrait::new();
-        routes
-            .append(
-                RouteTrait::new(
-                    'Move'.into(), // target_id
-                    'MovesWriter'.into(), // role_id
-                    'Moves'.into(), // resource_id
-                )
-            );
-        routes
-            .append(
-                RouteTrait::new(
-                    'Move'.into(), // target_id
-                    'PositionWriter'.into(), // role_id
-                    'Position'.into(), // resource_id
-                )
-            );
-        routes
-            .append(
-                RouteTrait::new(
-                    'Spawn'.into(), // target_id
-                    'MovesWriter'.into(), // role_id
-                    'Moves'.into(), // resource_id
-                )
-            );
-        routes
-            .append(
-                RouteTrait::new(
-                    'Spawn'.into(), // target_id
-                    'PositionWriter'.into(), // role_id
-                    'Position'.into(), // resource_id
-                )
-            );
+        let mut systems: Array = Default::default();
+        systems.append(spawn::TEST_CLASS_HASH);
+        systems.append(move::TEST_CLASS_HASH);
 
         // deploy executor, world and register components/systems
-        let world = spawn_test_world(components, systems, routes);
+        let world = spawn_test_world(components, systems);
 
-        let spawn_call_data = array::ArrayTrait::new();
-        world.execute('Spawn'.into(), spawn_call_data.span());
+        let spawn_call_data: Array = Default::default();
+        world.execute('spawn'.into(), spawn_call_data.span());
 
-        let mut move_calldata = array::ArrayTrait::new();
-        move_calldata.append(Move::Direction::Right(()).into());
-        world.execute('Move'.into(), move_calldata.span());
+        let mut move_calldata: Array = Default::default();
+        move_calldata.append(move::Direction::Right(()).into());
+        world.execute('move'.into(), move_calldata.span());
 
         let moves = world.entity('Moves'.into(), caller.into(), 0, 0);
         assert(*moves[0] == 9, 'moves is wrong');
-    // let new_position = world.entity('Position'.into(), caller.into(), 0, 0);
-    // assert(*new_position[0] == 1, 'position x is wrong');
-    // assert(*new_position[1] == 0, 'position y is wrong');
+        let new_position = world.entity('Position'.into(), caller.into(), 0, 0);
+        assert(*new_position[0] == 1, 'position x is wrong');
+        assert(*new_position[1] == 0, 'position y is wrong');
     }
 }
