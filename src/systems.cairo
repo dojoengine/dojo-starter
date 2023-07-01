@@ -8,7 +8,7 @@ mod Spawn {
     use dojo_examples::components::Moves;
 
     fn execute(ctx: Context) {
-        let player = set !(
+        set !(
             ctx.world, ctx.origin.into(), (Moves { remaining: 10 }, Position { x: 0, y: 0 }, )
         );
         return ();
