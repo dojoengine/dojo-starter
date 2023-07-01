@@ -2,13 +2,14 @@
 mod Spawn {
     use array::ArrayTrait;
     use traits::Into;
+    use dojo::world::Context;
 
     use dojo_examples::components::Position;
     use dojo_examples::components::Moves;
 
     fn execute(ctx: Context) {
         let player = set !(
-            ctx, ctx.caller_account.into(), (Moves { remaining: 10 }, Position { x: 0, y: 0 }, )
+            ctx.world, ctx.origin.into(), (Moves { remaining: 10 }, Position { x: 0, y: 0 }, )
         );
         return ();
     }
@@ -18,7 +19,7 @@ mod Spawn {
 mod Move {
     use array::ArrayTrait;
     use traits::Into;
-
+    use dojo::world::Context;
     use dojo_examples::components::Position;
     use dojo_examples::components::Moves;
 
@@ -42,11 +43,11 @@ mod Move {
     }
 
     fn execute(ctx: Context, direction: Direction) {
-        let (position, moves) = get !(ctx, ctx.caller_account.into(), (Position, Moves));
+        let (position, moves) = get !(ctx.world, ctx.origin.into(), (Position, Moves));
         let next = next_position(position, direction);
         let uh = set !(
-            ctx,
-            ctx.caller_account.into(),
+            ctx.world,
+            ctx.origin.into(),
             (Moves { remaining: moves.remaining - 1 }, Position { x: next.x, y: next.y }, )
         );
         return ();
