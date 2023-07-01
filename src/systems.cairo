@@ -45,7 +45,7 @@ mod Move {
     fn execute(ctx: Context, direction: Direction) {
         let (position, moves) = get !(ctx.world, ctx.origin.into(), (Position, Moves));
         let next = next_position(position, direction);
-        let uh = set !(
+        set !(
             ctx.world,
             ctx.origin.into(),
             (Moves { remaining: moves.remaining - 1 }, Position { x: next.x, y: next.y }, )
