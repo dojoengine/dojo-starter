@@ -1,0 +1,38 @@
+name: test
+
+on: [push, pull_request]
+
+env:
+  ARCHIVE_LINK: https://github.com/dojoengine/dojo/releases/download/nightly-e7abee5/dojo_nightly_linux_amd64.tar.gz
+  ARCHIVE_NAME: dojo.zip
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Check out main branch
+        uses: actions/checkout@v3
+      - name: Step 2 - Downloading binaries
+        run: curl -L -o $ARCHIVE_NAME $ARCHIVE_LINK
+      - name: Step 3 - Unzipping binaries
+        run: mkdir -p dojo/bin && tar -xvf $ARCHIVE_NAME -C dojo/bin
+      - name: Step 4 - Make binaries available
+        run: echo "./dojo/bin" >> $GITHUB_PATH
+      - name: Step 5 - Trying to build
+        run: sozo build
+
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Check out main branch
+        uses: actions/checkout@v3
+      - name: Step 2 - Downloading binaries
+        run: curl -L -o $ARCHIVE_NAME $ARCHIVE_LINK
+      - name: Step 3 - Unzipping binaries
+        run: mkdir -p dojo/bin && tar -xvf $ARCHIVE_NAME -C dojo/bin
+      - name: Step 4 - Make binaries available
+        run: echo "./dojo/bin" >> $GITHUB_PATH
+      - name: Step 5 - Trying to build
+        run: sozo test
