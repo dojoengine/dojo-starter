@@ -86,10 +86,10 @@ Congratulations! You've successfully setup and deployed your first Dojo Autonomo
 
 Explore and interact with your locally deployed world! This guide will help you fetch schemas, inspect entities, and execute actions using `sozo`.
 
-If you have followed the example exactly and deployed on Katana, you can use the world address generated to either
+If you have followed the example exactly and deployed on Katana, you can use the world address generated to either:
 
-- as an argument to `--world` when calling `sozo` commands
-- add it to [Scarb.toml](Scarb.toml) like so
+- use as an argument to `--world` when calling `sozo` commands
+- add it to [Scarb.toml](Scarb.toml) under `[tool.dojo.env]` table like so
 
     ```toml
     [tool.dojo.env]
@@ -130,10 +130,10 @@ If you haven't made an entity yet, it will return `0`.
 
 ## Adding an Entity
 
-No entity? No problem! You can add an entity to the world by executing the `Spawn` system. Remember, there's no need to pass any call data as the system uses the caller's address for the database.
+No entity? No problem! You can add an entity to the world by executing the `spawn` system. Remember, there's no need to pass any call data as the system uses the caller's address for the database.
 
 ```bash
-sozo execute Spawn
+sozo execute spawn
 ```
 
 ## Refetching an Entity's Component
