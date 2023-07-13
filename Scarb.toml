@@ -8,7 +8,7 @@ cairo-version = ">=2.0.0-rc0"
 sierra-replace-ids = true
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "nightly"}
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "nightly-9030d68dc1c4bef4a666ded520a953f145d9aa2a"}
 
 [[target.dojo]]
 
