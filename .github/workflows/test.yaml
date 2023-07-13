@@ -3,7 +3,7 @@ name: test
 on: [push, pull_request]
 
 env:
-  ARCHIVE_LINK: https://github.com/dojoengine/dojo/releases/download/nightly-e7abee5/dojo_nightly_linux_amd64.tar.gz
+  ARCHIVE_LINK: https://github.com/dojoengine/dojo/releases/download/nightly/dojo_nightly_linux_amd64.tar.gz
   ARCHIVE_NAME: dojo.zip
 
 jobs:
