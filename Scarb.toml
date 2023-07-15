@@ -1,14 +1,14 @@
 [package]
+cairo-version = ">=2.0.0-rc0"
 name = "dojo_examples"
 version = "0.1.0"
-cairo-version = ">=2.0.0-rc0"
 
 
 [cairo]
 sierra-replace-ids = true
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "nightly-9030d68dc1c4bef4a666ded520a953f145d9aa2a"}
+dojo = { git = "https://github.com/dojoengine/dojo" }
 
 [[target.dojo]]
 
@@ -21,5 +21,5 @@ rpc_url = "http://localhost:5050/"
 account_address = "0x03ee9e18edc71a6df30ac3aca2e0b02a198fbce19b7480a63a0d71cbd76652e0"
 private_key = "0x0300001800000000300000180000000000030000000000003006001800006600"
 
-keystore_path = "../keystore.json"
 keystore_password = "password"
+keystore_path = "../keystore.json"
