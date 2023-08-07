@@ -8,7 +8,7 @@ version = "0.1.0"
 sierra-replace-ids = true
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo" }
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "v0.1.0" }
 
 [[target.dojo]]
 
@@ -16,6 +16,7 @@ dojo = { git = "https://github.com/dojoengine/dojo" }
 initializer_class_hash = "0xbeef"
 
 [tool.dojo.env]
+world_address = "0x18e4789ceeeb8bd2685b53e175a69e5c9b66f1a5d8c28f82213b1d5d33ada56"
 rpc_url = "http://localhost:5050/"
 # Default account for katana with seed = 0
 account_address = "0x03ee9e18edc71a6df30ac3aca2e0b02a198fbce19b7480a63a0d71cbd76652e0"

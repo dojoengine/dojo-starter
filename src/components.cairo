@@ -1,3 +1,5 @@
+mod avatar;
+
 use array::ArrayTrait;
 
 #[derive(Component, Copy, Drop, Serde, SerdeLen)]

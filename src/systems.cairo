@@ -6,9 +6,14 @@ mod spawn {
 
     use dojo_examples::components::Position;
     use dojo_examples::components::Moves;
+    use dojo_examples::components::avatar::hp::Hp;
 
     fn execute(ctx: Context) {
-        set !(ctx.world, ctx.origin.into(), (Moves { remaining: 10 }, Position { x: 0, y: 0 }, ));
+        set !(ctx.world, ctx.origin.into(), (
+            Moves { remaining: 10 },
+            Position { x: 0, y: 0 }, 
+            Hp { maxValue: 100, value: 100 }
+        ));
         return ();
     }
 }
