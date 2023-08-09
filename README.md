@@ -72,12 +72,19 @@ katana --allow-zero-max-fee
 
 ### Step 5: Migrate (Deploy) the World
 
-Finally, deploy your world using the `sozo migrate` command. This command, deploys your world to Katana!
+Deploy your world using the `sozo migrate` command. This command, deploys your world to Katana!
 
 ```console
 sozo migrate
 ```
 
+### Step 6: Turn on Torii (Automatic Indexing)
+
+Finally, turn on Torii for indexing of the state of your world. This will allow you to use Graphql to query entities. Use the world address outputted by the `sozo migrate` command as an argument to `--world-address` flag.
+
+```console
+torii --manifest target/dev/manifest.json --world-address <world_address>
+```
 Congratulations! You've successfully setup and deployed your first Dojo Autonomous World.
 
 ---
