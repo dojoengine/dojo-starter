@@ -107,6 +107,7 @@ mod tests {
         let mut components = array::ArrayTrait::new();
         components.append(position::TEST_CLASS_HASH);
         components.append(moves::TEST_CLASS_HASH);
+
         // systems
         let mut systems = array::ArrayTrait::new();
         systems.append(spawn::TEST_CLASS_HASH);
@@ -116,11 +117,11 @@ mod tests {
         let world = spawn_test_world(components, systems);
 
         let spawn_call_data = array::ArrayTrait::new();
-        world.execute('spawn', spawn_call_data.span());
+        world.execute('spawn', spawn_call_data);
 
         let mut move_calldata = array::ArrayTrait::new();
         move_calldata.append(move::Direction::Right(()).into());
-        world.execute('move', move_calldata.span());
+        world.execute('move', move_calldata);
         let mut keys = array::ArrayTrait::new();
         keys.append(caller.into());
 
