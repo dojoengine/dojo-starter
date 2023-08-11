@@ -75,7 +75,7 @@ katana --disable-fee
 Deploy your world using the `sozo migrate` command. This command, deploys your world to Katana!
 
 ```console
-sozo migrate
+sozo migrate --name example
 ```
 
 ### Step 6: Turn on Torii (Automatic Indexing)
