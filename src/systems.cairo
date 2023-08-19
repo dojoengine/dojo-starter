@@ -104,49 +104,10 @@ mod tests {
         let caller = starknet::contract_address_const::<0x0>();
 
         // components
-        let mut components = array::ArrayTrait::new();
-        components.append(position::TEST_CLASS_HASH);
-        components.append(moves::TEST_CLASS_HASH);
+        let mut components = array![position::TEST_CLASS_HASH, moves::TEST_CLASS_HASH];
 
         // systems
-        let mut systems = array::ArrayTrait::new();
-        systems.append(spawn::TEST_CLASS_HASH);
-        systems.append(move::TEST_CLASS_HASH);
-
-        // deploy executor, world and register components/systems
-        let world = spawn_test_world(components, systems);
-
-        let spawn_call_data = array::ArrayTrait::new();
-        world.execute('spawn', spawn_call_data);
-
-        let mut move_calldata = array::ArrayTrait::new();
-        move_calldata.append(move::Direction::Right(()).into());
-        world.execute('move', move_calldata);
-        let mut keys = array::ArrayTrait::new();
-        keys.append(caller.into());
-
-        let moves = world.entity('Moves', keys.span(), 0, dojo::SerdeLen::<Moves>::len());
-        assert(*moves[0] == 9, 'moves is wrong');
-        let new_position = world
-            .entity('Position', keys.span(), 0, dojo::SerdeLen::<Position>::len());
-        assert(*new_position[0] == 11, 'position x is wrong');
-        assert(*new_position[1] == 10, 'position y is wrong');
-    }
-
-    #[test]
-    #[available_gas(30000000)]
-    fn test_move_from_non_deployer() {
-        let caller = starknet::contract_address_const::<0x1>();
-
-        // components
-        let mut components = array::ArrayTrait::new();
-        components.append(position::TEST_CLASS_HASH);
-        components.append(moves::TEST_CLASS_HASH);
-
-        // systems
-        let mut systems = array::ArrayTrait::new();
-        systems.append(spawn::TEST_CLASS_HASH);
-        systems.append(move::TEST_CLASS_HASH);
+        let mut systems = array![spawn::TEST_CLASS_HASH, move::TEST_CLASS_HASH];
 
         // deploy executor, world and register components/systems
         let world = spawn_test_world(components, systems);

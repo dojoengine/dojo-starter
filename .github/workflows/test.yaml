@@ -1,29 +1,17 @@
-name: test
+name: CI
 
-on: [push, pull_request]
-
-env:
-  ARCHIVE_LINK: https://github.com/dojoengine/dojo/releases/download/nightly-9030d68dc1c4bef4a666ded520a953f145d9aa2a/dojo_nightly_linux_amd64.tar.gz
-  ARCHIVE_NAME: dojo.zip
+on:
+  push:
+  pull_request:
 
 jobs:
-  test:
-    name: test
+  sozo-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1 - Check out main branch
-        uses: actions/checkout@v3
-      - name: Step 2 - Downloading binaries
-        run: curl -L -o $ARCHIVE_NAME $ARCHIVE_LINK
-      - name: Step 3 - Unzipping binaries
-        run: mkdir -p dojo/bin && tar -xvf $ARCHIVE_NAME -C dojo/bin
-      - name: Step 4 - Make binaries available
-        run: echo "$GITHUB_WORKSPACE/dojo/bin" >> $GITHUB_PATH
-      - name: Step 5 - Run Katana in the background
-        run: screen -d -m katana --allow-zero-max-fee
-      - name: Step 6 - Run tests
-        run: sozo test
-      - name: Step 7 - Run build
-        run: sozo build
-      - name: Step 8 - Run migration
-        run: sozo migrate
+    - uses: actions/checkout@v3
+    - run: curl -L https://install.dojoengine.org | bash
+    - run: /home/runner/.config/.dojo/bin/dojoup
+    - run: |
+        cd contracts
+        /home/runner/.config/.dojo/bin/sozo build
+        /home/runner/.config/.dojo/bin/sozo test
