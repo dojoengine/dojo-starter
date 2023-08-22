@@ -5,7 +5,7 @@ mod tests {
     use array::ArrayTrait;
 
     // dojo core imports
-    use dojo::world::IWorldDispatcherTrait;
+    use dojo::world::{IWorldDispatcherTrait, IWorldDispatcher};
     use dojo::test_utils::spawn_test_world;
 
     // project imports
@@ -14,11 +14,9 @@ mod tests {
     use dojo_examples::systems::spawn;
     use dojo_examples::systems::move;
 
-    #[test]
-    #[available_gas(30000000)]
-    fn test_move() {
-        let caller = starknet::contract_address_const::<0x0>();
-
+    // helper setup function
+    // reuse this function for all tests
+    fn setup_world() -> IWorldDispatcher {
         // components
         let mut components = array![position::TEST_CLASS_HASH, moves::TEST_CLASS_HASH];
 
@@ -26,7 +24,13 @@ mod tests {
         let mut systems = array![spawn::TEST_CLASS_HASH, move::TEST_CLASS_HASH];
 
         // deploy executor, world and register components/systems
-        let world = spawn_test_world(components, systems);
+        spawn_test_world(components, systems)
+    }
+
+    #[test]
+    #[available_gas(30000000)]
+    fn test_move() {
+        let world = setup_world();
 
         // spawn entity
         world.execute('spawn', array![]);
@@ -35,6 +39,7 @@ mod tests {
         world.execute('move', array![move::Direction::Right(()).into()]);
 
         // call data for entity - it is just the caller
+        let caller = starknet::contract_address_const::<0x0>();
         let call_data = array![caller.into()].span();
 
         // check entity
