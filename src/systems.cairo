@@ -9,14 +9,13 @@ mod spawn {
     use dojo_examples::components::Moves;
 
     fn execute(ctx: Context) {
-        let position = get!(ctx.world, ctx.origin, (Position));
         set!(
             ctx.world,
             (
                 Moves {
                     player: ctx.origin, remaining: 10
                     }, Position {
-                    player: ctx.origin, x: position.x + 10, y: position.y + 10
+                    player: ctx.origin, x: 10, y: 10
                 },
             )
         );
