@@ -2,20 +2,27 @@
 mod spawn {
     use array::ArrayTrait;
     use box::BoxTrait;
-    use traits::Into;
+    use traits::{Into, TryInto};
+    use option::OptionTrait;
     use dojo::world::Context;
 
     use dojo_examples::components::Position;
     use dojo_examples::components::Moves;
+    use dojo_examples::constants::OFFSET;
+
+    // so we don't go negative
 
     fn execute(ctx: Context) {
+        // cast the offset to a u32
+        let offset: u32 = OFFSET.try_into().unwrap();
+
         set!(
             ctx.world,
             (
                 Moves {
-                    player: ctx.origin, remaining: 10
+                    player: ctx.origin, remaining: 100
                     }, Position {
-                    player: ctx.origin, x: 10, y: 10
+                    player: ctx.origin, x: offset, y: offset
                 },
             )
         );

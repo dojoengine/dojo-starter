@@ -44,12 +44,12 @@ mod tests {
 
         // check entity
         let moves = world.entity('Moves', call_data, 0, dojo::SerdeLen::<Moves>::len());
-        assert(*moves[0] == 9, 'moves is wrong');
+        assert(*moves[0] == 99, 'moves is wrong');
 
         // check position
         let new_position = world
             .entity('Position', call_data, 0, dojo::SerdeLen::<Position>::len());
-        assert(*new_position[0] == 11, 'position x is wrong');
-        assert(*new_position[1] == 10, 'position y is wrong');
+        assert(*new_position[0] == 1001, 'position x is wrong');
+        assert(*new_position[1] == 1000, 'position y is wrong');
     }
 }
