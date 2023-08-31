@@ -20,3 +20,8 @@ rpc_url = "http://localhost:5050/"
 account_address = "0x3ee9e18edc71a6df30ac3aca2e0b02a198fbce19b7480a63a0d71cbd76652e0"
 private_key = "0x300001800000000300000180000000000030000000000003006001800006600"
 # world_address = "0x7d1f066a910bd86f532fa9ca66766722c20d47462fb99fb2fb0e1030262f9c5"
+
+# Madara testnet
+# rpc_url = "https://api.cartridge.gg/x/shinai/madara"
+# account_address = "0x2"
+# private_key = "0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d"
