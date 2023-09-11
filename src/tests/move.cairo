@@ -1,10 +1,5 @@
 #[cfg(test)]
 mod tests {
-    // cairo core imports
-    use core::traits::Into;
-    use array::ArrayTrait;
-
-    // dojo core imports
     use dojo::world::{IWorldDispatcherTrait, IWorldDispatcher};
     use dojo::test_utils::spawn_test_world;
 
@@ -13,6 +8,11 @@ mod tests {
     use dojo_examples::components::{moves, Moves};
     use dojo_examples::systems::spawn;
     use dojo_examples::systems::move;
+    use dojo_examples::constants::OFFSET;
+
+    #[event]
+    use dojo_examples::events::{Event, Moved};
+
 
     // helper setup function
     // reuse this function for all tests
@@ -28,7 +28,7 @@ mod tests {
     }
 
     #[test]
-    #[available_gas(30000000)]
+    #[available_gas(300000000)]
     fn test_move() {
         let world = setup_world();
 
@@ -38,18 +38,59 @@ mod tests {
         // move entity
         world.execute('move', array![move::Direction::Right(()).into()]);
 
-        // call data for entity - it is just the caller
+        // it is just the caller
         let caller = starknet::contract_address_const::<0x0>();
-        let call_data = array![caller.into()].span();
 
-        // check entity
-        let moves = world.entity('Moves', call_data, 0, dojo::SerdeLen::<Moves>::len());
-        assert(*moves[0] == 99, 'moves is wrong');
+        // check moves
+        let moves = get!(world, caller, (Moves));
+        assert(moves.remaining == 99, 'moves is wrong');
 
         // check position
-        let new_position = world
-            .entity('Position', call_data, 0, dojo::SerdeLen::<Position>::len());
-        assert(*new_position[0] == 1001, 'position x is wrong');
-        assert(*new_position[1] == 1000, 'position y is wrong');
+        let new_position = get!(world, caller, (Position));
+        assert(new_position.x == (OFFSET + 1).try_into().unwrap(), 'position x is wrong');
+        assert(new_position.y == OFFSET.try_into().unwrap(), 'position y is wrong');
+
+        //check events
+
+        // unpop world creation events
+        let mut events_to_unpop = 1; // WorldSpawned
+        events_to_unpop += 2; // 2x ComponentRegistered
+        events_to_unpop += 2; // 2x SystemRegistered
+        loop {
+            if events_to_unpop == 0 {
+                break;
+            };
+
+            starknet::testing::pop_log_raw(world.contract_address);
+            events_to_unpop -= 1;
+        };
+
+        starknet::testing::pop_log_raw(world.contract_address); // unpop StoreSetRecord Moves
+        starknet::testing::pop_log_raw(world.contract_address); // unpop StoreSetRecord Position
+        // player spawns at x:OFFSET, y:OFFSET
+        assert(
+            @starknet::testing::pop_log(world.contract_address)
+                .unwrap() == @Event::Moved(
+                    Moved {
+                        player: caller, x: OFFSET.try_into().unwrap(), y: OFFSET.try_into().unwrap()
+                    }
+                ),
+            'invalid Moved event 0'
+        );
+
+        starknet::testing::pop_log_raw(world.contract_address); // unpop StoreSetRecord Moves
+        starknet::testing::pop_log_raw(world.contract_address); // unpop StoreSetRecord Position
+        // player move at x:OFFSET+1, y:OFFSET
+        assert(
+            @starknet::testing::pop_log(world.contract_address)
+                .unwrap() == @Event::Moved(
+                    Moved {
+                        player: caller,
+                        x: (OFFSET + 1).try_into().unwrap(),
+                        y: OFFSET.try_into().unwrap()
+                    }
+                ),
+            'invalid Moved event 1'
+        );
     }
 }
