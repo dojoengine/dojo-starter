@@ -1,14 +1,13 @@
-use array::ArrayTrait;
 use starknet::ContractAddress;
 
-#[derive(Component, Copy, Drop, Serde, SerdeLen)]
+#[derive(Component, Copy, Drop, Serde)]
 struct Moves {
     #[key]
     player: ContractAddress,
     remaining: u8,
 }
 
-#[derive(Component, Copy, Drop, Serde, SerdeLen)]
+#[derive(Component, Copy, Drop, Serde)]
 struct Position {
     #[key]
     player: ContractAddress,
@@ -36,7 +35,6 @@ impl PositionImpl of PositionTrait {
 
 #[cfg(test)]
 mod tests {
-    use debug::PrintTrait;
     use super::{Position, PositionTrait};
 
     #[test]
@@ -51,7 +49,6 @@ mod tests {
     fn test_position_is_equal() {
         let player = starknet::contract_address_const::<0x0>();
         let position = Position { player, x: 420, y: 0 };
-        position.print();
         assert(PositionTrait::is_equal(position, Position { player, x: 420, y: 0 }), 'not equal');
     }
 }

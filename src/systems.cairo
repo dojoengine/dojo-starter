@@ -1,14 +1,14 @@
 #[system]
 mod spawn {
-    use array::ArrayTrait;
-    use box::BoxTrait;
-    use traits::{Into, TryInto};
-    use option::OptionTrait;
     use dojo::world::Context;
 
     use dojo_examples::components::Position;
     use dojo_examples::components::Moves;
     use dojo_examples::constants::OFFSET;
+
+    #[event]
+    use dojo_examples::events::{Event, Moved};
+
 
     // so we don't go negative
 
@@ -19,27 +19,26 @@ mod spawn {
         set!(
             ctx.world,
             (
-                Moves {
-                    player: ctx.origin, remaining: 100
-                    }, Position {
-                    player: ctx.origin, x: offset, y: offset
-                },
+                Moves { player: ctx.origin, remaining: 100 },
+                Position { player: ctx.origin, x: offset, y: offset },
             )
         );
+
+        emit!(ctx.world, Moved { player: ctx.origin, x: offset, y: offset, });
+
         return ();
     }
 }
 
 #[system]
 mod move {
-    use array::ArrayTrait;
-    use box::BoxTrait;
-    use traits::Into;
     use dojo::world::Context;
-    use debug::PrintTrait;
 
     use dojo_examples::components::Position;
     use dojo_examples::components::Moves;
+
+    #[event]
+    use dojo_examples::events::{Event, Moved};
 
     #[derive(Serde, Drop)]
     enum Direction {
@@ -65,6 +64,7 @@ mod move {
         moves.remaining -= 1;
         let next = next_position(position, direction);
         set!(ctx.world, (moves, next));
+        emit!(ctx.world, Moved { player: ctx.origin, x: next.x, y: next.y, });
         return ();
     }
 
