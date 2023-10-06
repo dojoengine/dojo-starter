@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: curl -L https://install.dojoengine.org | bash
-    - run: /home/runner/.config/.dojo/bin/dojoup
+    - run: /home/runner/.config/.dojo/bin/dojoup -v nightly-e96f08d6302b2ce1277bc13b17a0723f74cb6177
     - run: |
         /home/runner/.config/.dojo/bin/sozo build
         /home/runner/.config/.dojo/bin/sozo test
