@@ -2,7 +2,7 @@ use array::ArrayTrait;
 use core::debug::PrintTrait;
 use starknet::ContractAddress;
 use dojo::database::schema::{
-    EnumMember, Member, Ty, Struct, SchemaIntrospection, serialize_member, serialize_member_type
+    Enum, Member, Ty, Struct, SchemaIntrospection, serialize_member, serialize_member_type
 };
 
 #[derive(Serde, Copy, Drop)]
@@ -28,15 +28,15 @@ impl DirectionSchemaIntrospectionImpl of SchemaIntrospection<Direction> {
     #[inline(always)]
     fn ty() -> Ty {
         Ty::Enum(
-            EnumMember {
+            Enum {
                 name: 'Direction',
                 attrs: array![].span(),
-                values: array![
-                    serialize_member_type(@Ty::Simple('None')),
-                    serialize_member_type(@Ty::Simple('Left')),
-                    serialize_member_type(@Ty::Simple('Right')),
-                    serialize_member_type(@Ty::Simple('Up')),
-                    serialize_member_type(@Ty::Simple('Down'))
+                children: array![
+                    ('None', serialize_member_type(@Ty::Tuple(array![].span()))),
+                    ('Left', serialize_member_type(@Ty::Tuple(array![].span()))),
+                    ('Right', serialize_member_type(@Ty::Tuple(array![].span()))),
+                    ('Up', serialize_member_type(@Ty::Tuple(array![].span()))),
+                    ('Down', serialize_member_type(@Ty::Tuple(array![].span()))),
                 ]
                     .span()
             }
@@ -68,7 +68,7 @@ impl DirectionIntoFelt252 of Into<Direction, felt252> {
     }
 }
 
-#[derive(Component, Copy, Drop, Serde)]
+#[derive(Model, Copy, Drop, Serde)]
 struct Moves {
     #[key]
     player: ContractAddress,
@@ -82,7 +82,7 @@ struct Vec2 {
     y: u32
 }
 
-#[derive(Component, Copy, Drop, Print, Serde)]
+#[derive(Model, Copy, Drop, Print, Serde)]
 struct Position {
     #[key]
     player: ContractAddress,
