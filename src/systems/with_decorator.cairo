@@ -1,18 +1,18 @@
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
-use dojo_examples::components::{Position, Moves, Direction};
+use dojo_examples::models::{Position, Moves, Direction};
 use starknet::{ContractAddress, ClassHash};
 
 // trait: specify functions to implement
 #[starknet::interface]
 trait IPlayerActions<TContractState> {
-    fn spawn(self: @TContractState, world: IWorldDispatcher);
-    fn move(self: @TContractState, world: IWorldDispatcher, direction: Direction);
+    fn spawn(self: @TContractState);
+    fn move(self: @TContractState, direction: Direction);
 }
 
 #[system]
 mod player_actions {
     use starknet::{ContractAddress, get_caller_address};
-    use dojo_examples::components::{Position, Moves, Direction, Vec2};
+    use dojo_examples::models::{Position, Moves, Direction, Vec2};
     use dojo_examples::utils::next_position;
     use super::IPlayerActions;
 
@@ -32,7 +32,8 @@ mod player_actions {
     #[external(v0)]
     impl PlayerActionsImpl of IPlayerActions<ContractState> {
         // ContractState is defined by system decorator expansion
-        fn spawn(self: @ContractState, world: IWorldDispatcher) {
+        fn spawn(self: @ContractState) {
+            let world = self.world_dispatcher.read();
             let player = get_caller_address();
             let position = get!(world, player, (Position));
             set!(
@@ -44,7 +45,8 @@ mod player_actions {
             );
         }
 
-        fn move(self: @ContractState, world: IWorldDispatcher, direction: Direction) {
+        fn move(self: @ContractState, direction: Direction) {
+            let world = self.world_dispatcher.read();
             let player = get_caller_address();
             let (mut position, mut moves) = get!(world, player, (Position, Moves));
             moves.remaining -= 1;
@@ -66,8 +68,8 @@ mod tests {
 
     use dojo::test_utils::{spawn_test_world, deploy_contract};
 
-    use dojo_examples::components::{position, moves};
-    use dojo_examples::components::{Position, Moves, Direction, Vec2};
+    use dojo_examples::models::{position, moves};
+    use dojo_examples::models::{Position, Moves, Direction, Vec2};
     use super::{player_actions, IPlayerActionsDispatcher, IPlayerActionsDispatcherTrait};
 
     #[test]
@@ -75,18 +77,19 @@ mod tests {
     fn test_move() {
         let caller = starknet::contract_address_const::<0x0>();
 
-        // components
-        let mut components = array![position::TEST_CLASS_HASH, moves::TEST_CLASS_HASH,];
-        // deploy world with components
-        let world = spawn_test_world(components);
+        // models
+        let mut models = array![position::TEST_CLASS_HASH, moves::TEST_CLASS_HASH,];
+        // deploy world with models
+        let world = spawn_test_world(models);
 
         // deploy systems contract
-        let contract_address = deploy_contract(player_actions::TEST_CLASS_HASH, array![].span());
+        let contract_address = world
+            .deploy_contract('salt', player_actions::TEST_CLASS_HASH.try_into().unwrap());
         let player_actions_system = IPlayerActionsDispatcher { contract_address };
 
         // System calls
-        player_actions_system.spawn(world);
-        player_actions_system.move(world, Direction::Right(()));
+        player_actions_system.spawn();
+        player_actions_system.move(Direction::Right(()));
 
         let moves = get!(world, caller, Moves);
         let right_dir_felt: felt252 = Direction::Right(()).into();
