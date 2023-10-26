@@ -1,9 +1,4 @@
-use array::ArrayTrait;
-use core::debug::PrintTrait;
 use starknet::ContractAddress;
-use dojo::database::schema::{
-    Enum, Member, Ty, Struct, SchemaIntrospection, serialize_member, serialize_member_type
-};
 
 #[derive(Serde, Copy, Drop, Introspect)]
 enum Direction {
@@ -12,18 +7,6 @@ enum Direction {
     Right: (),
     Up: (),
     Down: (),
-}
-
-impl DirectionPrintImpl of PrintTrait<Direction> {
-    fn print(self: Direction) {
-        match self {
-            Direction::None(()) => 0.print(),
-            Direction::Left(()) => 1.print(),
-            Direction::Right(()) => 2.print(),
-            Direction::Up(()) => 3.print(),
-            Direction::Down(()) => 4.print(),
-        }
-    }
 }
 
 impl DirectionIntoFelt252 of Into<Direction, felt252> {
@@ -38,7 +21,7 @@ impl DirectionIntoFelt252 of Into<Direction, felt252> {
     }
 }
 
-#[derive(Model, Copy, Drop, Serde)]
+#[derive(Model, Drop, Serde)]
 struct Moves {
     #[key]
     player: ContractAddress,
@@ -46,13 +29,13 @@ struct Moves {
     last_direction: Direction
 }
 
-#[derive(Copy, Drop, Serde, Print, Introspect)]
+#[derive(Copy, Drop, Serde, Introspect)]
 struct Vec2 {
     x: u32,
     y: u32
 }
 
-#[derive(Model, Copy, Drop, Print, Serde)]
+#[derive(Model, Copy, Drop, Serde)]
 struct Position {
     #[key]
     player: ContractAddress,
@@ -79,7 +62,6 @@ impl Vec2Impl of Vec2Trait {
 
 #[cfg(test)]
 mod tests {
-    use debug::PrintTrait;
     use super::{Position, Vec2, Vec2Trait};
 
     #[test]

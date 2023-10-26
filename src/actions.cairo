@@ -1,6 +1,4 @@
-use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
-use dojo_examples::models::{Position, Moves, Direction};
-use starknet::{ContractAddress, ClassHash};
+use dojo_examples::models::{Direction};
 
 // define the interface
 #[starknet::interface]
