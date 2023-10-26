@@ -1,5 +1,3 @@
-use array::ArrayTrait;
-use core::debug::PrintTrait;
 use starknet::ContractAddress;
 
 #[derive(Serde, Copy, Drop, Introspect)]
@@ -23,7 +21,7 @@ impl DirectionIntoFelt252 of Into<Direction, felt252> {
     }
 }
 
-#[derive(Model, Copy, Drop, Serde)]
+#[derive(Model, Drop, Serde)]
 struct Moves {
     #[key]
     player: ContractAddress,
@@ -31,13 +29,13 @@ struct Moves {
     last_direction: Direction
 }
 
-#[derive(Copy, Drop, Serde, Print, Introspect)]
+#[derive(Copy, Drop, Serde, Introspect)]
 struct Vec2 {
     x: u32,
     y: u32
 }
 
-#[derive(Model, Copy, Drop, Print, Serde)]
+#[derive(Model, Copy, Drop, Serde)]
 struct Position {
     #[key]
     player: ContractAddress,
@@ -64,7 +62,6 @@ impl Vec2Impl of Vec2Trait {
 
 #[cfg(test)]
 mod tests {
-    use debug::PrintTrait;
     use super::{Position, Vec2, Vec2Trait};
 
     #[test]
