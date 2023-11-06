@@ -3,8 +3,8 @@ version = 1
 
 [[package]]
 name = "dojo"
-version = "0.3.2"
-source = "git+https://github.com/dojoengine/dojo#5a2a5df6b86dd9bdb6b3b9cd702578ae6b620b4c"
+version = "0.3.4"
+source = "git+https://github.com/dojoengine/dojo#d62ec8a522f92d0a0ccf226c6e929bb918b31128"
 dependencies = [
  "dojo_plugin",
 ]
@@ -18,4 +18,4 @@ dependencies = [
 
 [[package]]
 name = "dojo_plugin"
-version = "0.3.2"
+version = "0.3.4"
