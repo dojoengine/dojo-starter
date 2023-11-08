@@ -47,17 +47,13 @@ mod actions {
             let moves = get!(world, player, (Moves));
 
             // Update the world state with the new data.
-            // 1. Increase the player's remaining moves by 10.
-            // 2. Move the player's position 10 units in both the x and y direction.
+            // 1. Set players moves to 10
+            // 2. Move the player's position 100 units in both the x and y direction.
             set!(
                 world,
                 (
-                    Moves {
-                        player, remaining: moves.remaining + 10, last_direction: Direction::None(())
-                    },
-                    Position {
-                        player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 }
-                    },
+                    Moves { player, remaining: 100, last_direction: Direction::None(()) },
+                    Position { player, vec: Vec2 { x: 0, y: 0 } },
                 )
             );
         }
@@ -138,7 +134,7 @@ mod tests {
         let right_dir_felt: felt252 = Direction::Right(()).into();
 
         // check moves
-        assert(moves.remaining == 9, 'moves is wrong');
+        assert(moves.remaining == 99, 'moves is wrong');
 
         // check last direction
         assert(moves.last_direction.into() == right_dir_felt, 'last direction is wrong');
@@ -147,9 +143,9 @@ mod tests {
         let new_position = get!(world, caller, Position);
 
         // check new position x
-        assert(new_position.vec.x == 11, 'position x is wrong');
+        assert(new_position.vec.x == 1, 'position x is wrong');
 
         // check new position y
-        assert(new_position.vec.y == 10, 'position y is wrong');
+        assert(new_position.vec.y == 0, 'position y is wrong');
     }
 }
