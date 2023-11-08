@@ -53,7 +53,7 @@ mod actions {
                 world,
                 (
                     Moves { player, remaining: 100, last_direction: Direction::None(()) },
-                    Position { player, vec: Vec2 { x: 0, y: 0 } },
+                    Position { player, vec: Vec2 { x: 10, y: 10 } },
                 )
             );
         }
@@ -143,9 +143,9 @@ mod tests {
         let new_position = get!(world, caller, Position);
 
         // check new position x
-        assert(new_position.vec.x == 1, 'position x is wrong');
+        assert(new_position.vec.x == 11, 'position x is wrong');
 
         // check new position y
-        assert(new_position.vec.y == 0, 'position y is wrong');
+        assert(new_position.vec.y == 10, 'position y is wrong');
     }
 }
