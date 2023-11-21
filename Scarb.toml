@@ -1,13 +1,13 @@
 [package]
-cairo-version = "2.2.0"
+cairo-version = "2.3.0"
 name = "dojo_examples"
-version = "0.3.10"
+version = "0.3.12"
 
 [cairo]
 sierra-replace-ids = true
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", version = "0.3.10" }
+dojo = { git = "https://github.com/dojoengine/dojo", version = "0.3.12" }
 
 [[target.dojo]]
 
