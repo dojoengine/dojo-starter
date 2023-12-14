@@ -15,10 +15,11 @@ echo actions : $ACTIONS_ADDRESS
 echo "---------------------------------------------------------------------------"
 
 # enable system -> component authorizations
-COMPONENTS=("Position" "Moves" )
+COMPONENTS=('dojo_examples::models::moves' 'dojo_examples::models::position')
 
 for component in ${COMPONENTS[@]}; do
     sozo auth writer --world $WORLD_ADDRESS --rpc-url $RPC_URL $component $ACTIONS_ADDRESS 
+    sleep 2
 done
 
 echo "Default authorizations have been successfully set."
