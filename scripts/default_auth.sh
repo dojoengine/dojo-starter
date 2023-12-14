@@ -15,7 +15,7 @@ echo actions : $ACTIONS_ADDRESS
 echo "---------------------------------------------------------------------------"
 
 # enable system -> component authorizations
-COMPONENTS=('dojo_examples::models::moves' 'dojo_examples::models::position')
+COMPONENTS=("Position" "Moves")
 
 for component in ${COMPONENTS[@]}; do
     sozo auth writer --world $WORLD_ADDRESS --rpc-url $RPC_URL $component $ACTIONS_ADDRESS 
