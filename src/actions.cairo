@@ -52,7 +52,7 @@ mod actions {
             set!(
                 world,
                 (
-                    Moves { player, remaining: 100, last_direction: Direction::None(()) },
+                    Moves { player, remaining: 100, last_direction: Direction::None },
                     Position { player, vec: Vec2 { x: 10, y: 10 } },
                 )
             );
@@ -125,13 +125,13 @@ mod tests {
         actions_system.spawn();
 
         // call move with direction right
-        actions_system.move(Direction::Right(()));
+        actions_system.move(Direction::Right);
 
         // Check world state
         let moves = get!(world, caller, Moves);
 
         // casting right direction
-        let right_dir_felt: felt252 = Direction::Right(()).into();
+        let right_dir_felt: felt252 = Direction::Right.into();
 
         // check moves
         assert(moves.remaining == 99, 'moves is wrong');
