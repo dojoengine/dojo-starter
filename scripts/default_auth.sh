@@ -19,6 +19,8 @@ COMPONENTS=("Position" "Moves" )
 
 for component in ${COMPONENTS[@]}; do
     sozo auth writer $component $ACTIONS_ADDRESS --world $WORLD_ADDRESS --rpc-url $RPC_URL
+    # time out for 1 second to avoid rate limiting
+    sleep 1
 done
 
 echo "Default authorizations have been successfully set."

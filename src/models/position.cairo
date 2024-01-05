@@ -1,45 +1,16 @@
 use starknet::ContractAddress;
 
-#[derive(Serde, Copy, Drop, Introspect)]
-enum Direction {
-    None,
-    Left,
-    Right,
-    Up,
-    Down,
-}
-
-impl DirectionIntoFelt252 of Into<Direction, felt252> {
-    fn into(self: Direction) -> felt252 {
-        match self {
-            Direction::None => 0,
-            Direction::Left => 1,
-            Direction::Right => 2,
-            Direction::Up => 3,
-            Direction::Down => 4,
-        }
-    }
-}
-
-#[derive(Model, Drop, Serde)]
-struct Moves {
+#[derive(Model, Copy, Drop, Serde)]
+struct Position {
     #[key]
     player: ContractAddress,
-    remaining: u8,
-    last_direction: Direction
+    vec: Vec2,
 }
 
 #[derive(Copy, Drop, Serde, Introspect)]
 struct Vec2 {
     x: u32,
     y: u32
-}
-
-#[derive(Model, Copy, Drop, Serde)]
-struct Position {
-    #[key]
-    player: ContractAddress,
-    vec: Vec2,
 }
 
 trait Vec2Trait {
