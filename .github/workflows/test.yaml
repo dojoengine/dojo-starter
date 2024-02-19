@@ -14,3 +14,8 @@ jobs:
             - run: |
                   /home/runner/.config/.dojo/bin/sozo build
                   /home/runner/.config/.dojo/bin/sozo test
+                  if [[ `git status --porcelain` ]]; then
+                    echo The git repo is dirty
+                    echo "Make sure to run \"sozo build\" after changing Scarb.toml"
+                    exit 1
+                  fi
