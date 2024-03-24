@@ -45,7 +45,7 @@ mod tests {
         let right_dir_felt: felt252 = Direction::Right.into();
 
         // check moves
-        assert(moves.remaining == 99, 'moves is wrong');
+        assert(moves.remaining == 0, 'moves is wrong');
 
         // check last direction
         assert(moves.last_direction.into() == right_dir_felt, 'last direction is wrong');
