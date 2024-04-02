@@ -16,8 +16,9 @@ echo "--------------------------------------------------------------------------
 
 # enable system -> models authorizations
 sozo auth grant --world $WORLD_ADDRESS --wait writer \
-  Position,$ACTIONS_ADDRESS \
-  Moves,$ACTIONS_ADDRESS \
-  > /dev/null
+ Position,$ACTIONS_ADDRESS \
+ Moves,$ACTIONS_ADDRESS \
+ > /dev/null
 
 echo "Default authorizations have been successfully set."
+
