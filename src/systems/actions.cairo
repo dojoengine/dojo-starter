@@ -16,20 +16,20 @@ mod actions {
     use starknet::{ContractAddress, get_caller_address};
     use dojo_starter::models::{position::{Position, Vec2}, moves::{Moves, Direction}};
 
-    // declaring custom event struct
-    #[event]
-    #[derive(Drop, starknet::Event)]
-    enum Event {
-        Moved: Moved,
-    }
+    // // declaring custom event struct
+    // #[event]
+    // #[derive(Drop, starknet::Event)]
+    // enum Event {
+    //     Moved: Moved,
+    // }
 
-    // declaring custom event struct
-    #[derive(starknet::Event, Model, Copy, Drop, Serde)]
-    struct Moved {
-        #[key]
-        player: ContractAddress,
-        direction: Direction
-    }
+    // // declaring custom event struct
+    // #[derive(starknet::Event, Model, Copy, Drop, Serde)]
+    // struct Moved {
+    //     #[key]
+    //     player: ContractAddress,
+    //     direction: Direction
+    // }
 
     // impl: implement functions specified in trait
     #[abi(embed_v0)]
@@ -48,9 +48,7 @@ mod actions {
             set!(
                 world,
                 (
-                    Moves {
-                        player, remaining: moves.remaining + 1, last_direction: Direction::None(())
-                    },
+                    Moves { player, remaining: 100, last_direction: Direction::None(()) },
                     Position {
                         player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 }
                     },
@@ -77,9 +75,8 @@ mod actions {
 
             // // Update the world state with the new moves data and position.
             set!(world, (moves, next));
-
-            // Emit an event to the world to notify about the player's move.
-            emit!(world, Moved { player, direction });
+        // Emit an event to the world to notify about the player's move.
+        // emit!(world, Moved { player, direction });
         }
     }
 }
