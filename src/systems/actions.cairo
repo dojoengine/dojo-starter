@@ -39,8 +39,6 @@ mod actions {
             let player = get_caller_address();
             // Retrieve the player's current position from the world.
             let position = get!(world, player, (Position));
-            // Retrieve the player's move data, e.g., how many moves they have left.
-            let moves = get!(world, player, (Moves));
 
             // Update the world state with the new data.
             // 1. Increase the player's remaining moves by 1.
