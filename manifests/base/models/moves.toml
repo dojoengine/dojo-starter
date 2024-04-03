@@ -1,5 +1,6 @@
 kind = "DojoModel"
 class_hash = "0x23c28dcfad6be01ca6509fdb35fd2bed6622238397613c60da5d387a43c38d0"
+abi = "abis/base/models/moves.json"
 name = "dojo_starter::models::moves::moves"
 
 [[members]]

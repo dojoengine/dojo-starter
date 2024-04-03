@@ -1,5 +1,5 @@
 kind = "DojoContract"
-class_hash = "0x1113dd34044f5ee5661a0c450c0d2f401da46e63a8f463756afbd89f8e70b8d"
+class_hash = "0x2ba96498480b9870625f788af7ed10381f12cf36e6a6d9beb7285271aa06d0d"
 abi = "abis/base/contracts/actions.json"
 reads = []
 writes = []

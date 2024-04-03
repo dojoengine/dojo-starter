@@ -4,7 +4,7 @@ version = 1
 [[package]]
 name = "dojo"
 version = "0.5.1"
-source = "git+https://github.com/dojoengine/dojo?tag=v0.6.0-alpha.7#f4c8111aefe2672d04356df64914871a5bcb536d"
+source = "git+https://github.com/dojoengine/dojo?tag=v0.6.0-alpha.12#c595fc927b7e33bd2c1d14e75dba459229d40363"
 dependencies = [
  "dojo_plugin",
 ]
