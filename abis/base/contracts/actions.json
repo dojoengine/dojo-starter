@@ -158,34 +158,12 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::systems::actions::actions::Moved",
-    "kind": "struct",
-    "members": [
-      {
-        "name": "player",
-        "type": "core::starknet::contract_address::ContractAddress",
-        "kind": "key"
-      },
-      {
-        "name": "direction",
-        "type": "dojo_starter::models::moves::Direction",
-        "kind": "data"
-      }
-    ]
-  },
-  {
-    "type": "event",
     "name": "dojo_starter::systems::actions::actions::Event",
     "kind": "enum",
     "variants": [
       {
         "name": "UpgradeableEvent",
         "type": "dojo::components::upgradeable::upgradeable::Event",
-        "kind": "nested"
-      },
-      {
-        "name": "Moved",
-        "type": "dojo_starter::systems::actions::actions::Moved",
         "kind": "nested"
       }
     ]
