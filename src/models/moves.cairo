@@ -1,6 +1,7 @@
 use starknet::ContractAddress;
 
 #[derive(Model, Drop, Serde)]
+#[dojo::event] // dojo dustom Events
 struct Moves {
     #[key]
     player: ContractAddress,
