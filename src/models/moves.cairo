@@ -1,7 +1,7 @@
 use starknet::ContractAddress;
 
 #[derive(Model, Drop, Serde)]
-#[dojo::event] // dojo custom event
+#[dojo::event] // A model with `dojo::event` is able to be emitted with the `emit!` macro.
 struct Moves {
     #[key]
     player: ContractAddress,
