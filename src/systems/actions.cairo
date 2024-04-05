@@ -15,7 +15,21 @@ mod actions {
 
     use starknet::{ContractAddress, get_caller_address};
     use dojo_starter::models::{position::{Position, Vec2}, moves::{Moves, Direction}};
+    
+    // // declaring custom event struct
+    // #[event]
+    // #[derive(Drop, starknet::Event)]
+    // enum Event {
+    //     Moved: Moved,
+    // }
 
+    // // declaring custom event struct
+    // #[derive(starknet::Event, Model, Copy, Drop, Serde)]
+    // struct Moved {
+    //     #[key]
+    //     player: ContractAddress,
+    //     direction: Direction
+    // }    
     // impl: implement functions specified in trait
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
@@ -59,8 +73,8 @@ mod actions {
 
             // // Update the world state with the new moves data and position.
             set!(world, (moves, next));
-
-            // Emit events to the world to notify about the player's move.
+            // Emit an event to the world to notify about the player's move.
+            // emit!(world, Moved { player, direction });
             emit!(world,( Moves { player, remaining, last_direction: direction }));
         }
     }
