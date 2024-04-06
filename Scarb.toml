@@ -7,7 +7,7 @@ version = "0.6.0"
 sierra-replace-ids = true
 
 [scripts]
-migrate = "sozo -P dev build && sozo -P dev migrate apply && ./scripts/default_auth.sh"
+migrate = "sozo build && sozo migrate apply && ./scripts/default_auth.sh"
 spawn = "./scripts/spawn.sh"
 move = "./scripts/move.sh"
 
@@ -19,7 +19,7 @@ dojo = { git = "https://github.com/dojoengine/dojo", tag = "v0.6.0" }
 [tool.dojo]
 initializer_class_hash = "0xbeef"
 
-[profile.dev.tool.dojo.env]
+[tool.dojo.env]
 rpc_url = "http://localhost:5050/"
 # Default account for katana with seed = 0
 account_address = "0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca"
