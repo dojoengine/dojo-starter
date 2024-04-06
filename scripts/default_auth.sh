@@ -8,8 +8,6 @@ export WORLD_ADDRESS=$(cat ./manifests/dev/manifest.json | jq -r '.world.address
 
 echo "---------------------------------------------------------------------------"
 echo world : $WORLD_ADDRESS
-echo " "
-echo actions : dojo_starter::systems::actions::actions
 echo "---------------------------------------------------------------------------"
 
 # enable system -> models authorizations
