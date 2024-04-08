@@ -15,15 +15,15 @@ mod actions {
 
     use starknet::{ContractAddress, get_caller_address};
     use dojo_starter::models::{position::{Position, Vec2}, moves::{Moves, Direction}};
-    
-    // // declaring custom event struct
+
+    // declaring custom starknet event 
     // #[event]
     // #[derive(Drop, starknet::Event)]
     // enum Event {
     //     Moved: Moved,
     // }
 
-    // // declaring custom event struct
+    //  declaring custom event struct
     // #[derive(starknet::Event, Model, Copy, Drop, Serde)]
     // struct Moved {
     //     #[key]
@@ -40,7 +40,7 @@ mod actions {
             let position = get!(world, player, (Position));
 
             // Update the world state with the new data.
-            // 1. Increase the player's remaining moves by 1.
+            // 1. Set the player's remaining moves to 100.
             // 2. Move the player's position 10 units in both the x and y direction.
             set!(
                 world,
@@ -71,11 +71,11 @@ mod actions {
             // Calculate the player's next position based on the provided direction.
             let next = next_position(position, direction);
 
-            // // Update the world state with the new moves data and position.
+            // Update the world state with the new moves data and position.
             set!(world, (moves, next));
             // Emit an event to the world to notify about the player's move.
             // emit!(world, Moved { player, direction });
-            emit!(world,( Moves { player, remaining, last_direction: direction }));
+            emit!(world, (Moves { player, remaining, last_direction: direction }));
         }
     }
 }
