@@ -7,8 +7,9 @@ version = "0.6.0"
 sierra-replace-ids = true
 
 [scripts]
-migrate = "sozo build && sozo migrate && ./scripts/default_auth.sh"
+migrate = "sozo build && sozo migrate apply && ./scripts/default_auth.sh"
 spawn = "./scripts/spawn.sh"
+move = "./scripts/move.sh"
 
 [dependencies]
 dojo = { git = "https://github.com/dojoengine/dojo", tag = "v0.6.0" }
