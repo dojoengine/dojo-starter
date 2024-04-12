@@ -12,25 +12,9 @@ trait IActions {
 #[dojo::contract]
 mod actions {
     use super::{IActions, next_position};
-
     use starknet::{ContractAddress, get_caller_address};
     use dojo_starter::models::{position::{Position, Vec2}, moves::{Moves, Direction}};
 
-    // declaring custom starknet event 
-    // #[event]
-    // #[derive(Drop, starknet::Event)]
-    // enum Event {
-    //     Moved: Moved,
-    // }
-
-    //  declaring custom event struct
-    // #[derive(starknet::Event, Model, Copy, Drop, Serde)]
-    // struct Moved {
-    //     #[key]
-    //     player: ContractAddress,
-    //     direction: Direction
-    // }    
-    // impl: implement functions specified in trait
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
         fn spawn(world: IWorldDispatcher) {
@@ -62,8 +46,7 @@ mod actions {
             let (mut position, mut moves) = get!(world, player, (Position, Moves));
 
             // Deduct one from the player's remaining moves.
-            let remaining = moves.remaining - 1;
-            moves.remaining = remaining;
+            moves.remaining -= 1;
 
             // Update the last direction the player moved in.
             moves.last_direction = direction;
@@ -74,8 +57,7 @@ mod actions {
             // Update the world state with the new moves data and position.
             set!(world, (moves, next));
             // Emit an event to the world to notify about the player's move.
-            // emit!(world, Moved { player, direction });
-            emit!(world, (Moves { player, remaining, last_direction: direction }));
+            emit!(world, (moves));
         }
     }
 }
