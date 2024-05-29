@@ -57,7 +57,7 @@ mod actions {
             // Update the world state with the new moves data and position.
             set!(world, (moves, next));
             // Emit an event to the world to notify about the player's move.
-            emit!(world, (moves));
+            // emit!(world, (moves));
         }
     }
 }
