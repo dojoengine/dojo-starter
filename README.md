@@ -18,7 +18,7 @@
 
 # Dojo Starter: Official Guide
 
-The official Dojo Starter guide, the quickest and most streamlined way to get your Dojo Autonomous World up and running. This guide will assist you with the initial setup, from cloning the repository to deploying your world.
+The official Dojo Starter guide, the quickest and most streamlined way to get your Dojo provable game up and running. This guide will assist you with the initial setup, from cloning the repository to deploying your world.
 
 Read the full tutorial [here](https://book.dojoengine.org/tutorial/dojo-starter#hello-dojo)
 
@@ -38,7 +38,5 @@ This starter project is a constant work in progress and contributions are greatl
 
 3. **Create a Pull Request**
    - It can't get better then this, your pull request will be appreciated by the community.
-
-For any other questions, feel free to reach out to us [here](https://dojoengine.org/contact).
 
 Happy coding!
