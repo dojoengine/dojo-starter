@@ -1,8 +1,8 @@
 {
   "world": {
     "kind": "WorldContract",
-    "class_hash": "0x64728e0c0713811c751930f8d3292d683c23f107c89b0a101425d9e80adb1c0",
-    "original_class_hash": "0x64728e0c0713811c751930f8d3292d683c23f107c89b0a101425d9e80adb1c0",
+    "class_hash": "0xf6f44afb3cacbcc01a371aff62c86ca9a45feba065424c99f7cd8637514d8f",
+    "original_class_hash": "0xf6f44afb3cacbcc01a371aff62c86ca9a45feba065424c99f7cd8637514d8f",
     "abi": [
       {
         "type": "impl",
@@ -210,6 +210,10 @@
               {
                 "name": "class_hash",
                 "type": "core::starknet::class_hash::ClassHash"
+              },
+              {
+                "name": "init_calldata",
+                "type": "core::array::Span::<core::felt252>"
               }
             ],
             "outputs": [
@@ -951,8 +955,8 @@
         ]
       }
     ],
-    "address": "0x3b5a8147f17a7ab5d5857a24d0d98574011445db0cab5ac75f588644b2b1517",
-    "transaction_hash": "0x6ae412f403271b047d348999bc1dddf726ed126763bdf491f3e1c9e9a6353d8",
+    "address": "0x559e9e223d83b6a3121ba33b1339323a3bdf4c7c302078fb3e755fddc68a2fb",
+    "transaction_hash": "0x426a655abad7f218400696f9138ef551e2371bdf934f70103b9bd61958e982d",
     "block_number": 3,
     "seed": "dojo_starter",
     "metadata": {
@@ -971,9 +975,9 @@
   "contracts": [
     {
       "kind": "DojoContract",
-      "address": "0x67ee87bc4f4ed8c613bb9578e9cab6a61efd9a1b60e6a32998822608abb9678",
-      "class_hash": "0x1b5a6e88a9e92ec19f8e1f3fa8be9e77fb599ef2b0f36c2777e7f824d3c260a",
-      "original_class_hash": "0x1b5a6e88a9e92ec19f8e1f3fa8be9e77fb599ef2b0f36c2777e7f824d3c260a",
+      "address": "0xe3dd66537d069719eba8f3d1ba5ba09872536deffa61f942cf7f862e58ac21",
+      "class_hash": "0x6241fe0afb7dd8fa11909c7acc9ba980d569ec227abb5389ce061e7a0b4e6d5",
+      "original_class_hash": "0x6241fe0afb7dd8fa11909c7acc9ba980d569ec227abb5389ce061e7a0b4e6d5",
       "base_class_hash": "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46",
       "abi": [
         {
@@ -1088,6 +1092,24 @@
         },
         {
           "type": "impl",
+          "name": "IDojoInitImpl",
+          "interface_name": "dojo_starter::systems::actions::actions::IDojoInit"
+        },
+        {
+          "type": "interface",
+          "name": "dojo_starter::systems::actions::actions::IDojoInit",
+          "items": [
+            {
+              "type": "function",
+              "name": "dojo_init",
+              "inputs": [],
+              "outputs": [],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
           "name": "UpgradableImpl",
           "interface_name": "dojo::components::upgradeable::IUpgradeable"
         },
@@ -1147,8 +1169,12 @@
         }
       ],
       "reads": [],
-      "writes": [],
+      "writes": [
+        "Position",
+        "Moves"
+      ],
       "computed": [],
+      "init_calldata": [],
       "name": "dojo_starter::systems::actions::actions"
     }
   ],
@@ -1172,8 +1198,8 @@
           "key": false
         }
       ],
-      "class_hash": "0x3384498a9145add2bb43ac1a3db655af61bce0813398860088b9e8627e6b18f",
-      "original_class_hash": "0x3384498a9145add2bb43ac1a3db655af61bce0813398860088b9e8627e6b18f",
+      "class_hash": "0x4cccc308e899b0db11f3e47bcc3bf555d348102e1d89c85e8ba72f5f1098107",
+      "original_class_hash": "0x4cccc308e899b0db11f3e47bcc3bf555d348102e1d89c85e8ba72f5f1098107",
       "abi": [
         {
           "type": "impl",
@@ -1583,8 +1609,8 @@
           "key": false
         }
       ],
-      "class_hash": "0xbf299b3b39fe9e68785941a96c65ca04382ba2e1effd255311ab4e07e3d433",
-      "original_class_hash": "0xbf299b3b39fe9e68785941a96c65ca04382ba2e1effd255311ab4e07e3d433",
+      "class_hash": "0x4312e0e9fa6d912c293311798591e5022744a5fbebefc5ddfcfcc9b7c0c9be1",
+      "original_class_hash": "0x4312e0e9fa6d912c293311798591e5022744a5fbebefc5ddfcfcc9b7c0c9be1",
       "abi": [
         {
           "type": "impl",
