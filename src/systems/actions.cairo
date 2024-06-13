@@ -13,7 +13,9 @@ trait IActions {
 mod actions {
     use super::{IActions, next_position};
     use starknet::{ContractAddress, get_caller_address};
-    use dojo_starter::models::{position::{Position, Vec2}, moves::{Moves, Direction}};
+    use dojo_starter::models::{
+        position::{Position, Vec2}, moves::{Moves, Direction, DirectionsAvailable}
+    };
 
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
@@ -26,6 +28,11 @@ mod actions {
             // Update the world state with the new data.
             // 1. Set the player's remaining moves to 100.
             // 2. Move the player's position 10 units in both the x and y direction.
+
+            let directions_available = DirectionsAvailable {
+                player, directions: array![1, 2, 3, 4],
+            };
+
             set!(
                 world,
                 (
@@ -33,6 +40,7 @@ mod actions {
                     Position {
                         player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 }
                     },
+                    directions_available
                 )
             );
         }
@@ -56,8 +64,8 @@ mod actions {
 
             // Update the world state with the new moves data and position.
             set!(world, (moves, next));
-            // Emit an event to the world to notify about the player's move.
-            // emit!(world, (moves));
+        // Emit an event to the world to notify about the player's move.
+        // emit!(world, (moves));
         }
     }
 }

@@ -6,7 +6,15 @@ struct Moves {
     #[key]
     player: ContractAddress,
     remaining: u8,
-    last_direction: Direction
+    last_direction: Direction,
+}
+
+#[derive(Drop, Serde)]
+#[dojo::model]
+struct DirectionsAvailable {
+    #[key]
+    player: ContractAddress,
+    directions: Array<u8>,
 }
 
 #[derive(Serde, Copy, Drop, Introspect)]
