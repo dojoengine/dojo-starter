@@ -4,8 +4,8 @@ use dojo_starter::models::position::Position;
 // define the interface
 #[dojo::interface]
 trait IActions {
-    fn spawn();
-    fn move(direction: Direction);
+    fn spawn(ref world: IWorldDispatcher);
+    fn move(ref world: IWorldDispatcher, direction: Direction);
 }
 
 // dojo decorator
@@ -13,11 +13,13 @@ trait IActions {
 mod actions {
     use super::{IActions, next_position};
     use starknet::{ContractAddress, get_caller_address};
-    use dojo_starter::models::{position::{Position, Vec2}, moves::{Moves, Direction}};
+    use dojo_starter::models::{
+        position::{Position, Vec2}, moves::{Moves, Direction, DirectionsAvailable}
+    };
 
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
-        fn spawn(world: IWorldDispatcher) {
+        fn spawn(ref world: IWorldDispatcher) {
             // Get the address of the current caller, possibly the player's address.
             let player = get_caller_address();
             // Retrieve the player's current position from the world.
@@ -26,6 +28,18 @@ mod actions {
             // Update the world state with the new data.
             // 1. Set the player's remaining moves to 100.
             // 2. Move the player's position 10 units in both the x and y direction.
+            // 3. Set available directions to all four directions. (This is an example of how you can use an array in Dojo).
+
+            let directions_available = DirectionsAvailable {
+                player,
+                directions: array![
+                    Direction::Up,
+                    Direction::Right,
+                    Direction::Down,
+                    Direction::Left
+                ],
+            };
+
             set!(
                 world,
                 (
@@ -33,12 +47,13 @@ mod actions {
                     Position {
                         player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 }
                     },
+                    directions_available
                 )
             );
         }
 
         // Implementation of the move function for the ContractState struct.
-        fn move(world: IWorldDispatcher, direction: Direction) {
+        fn move(ref world: IWorldDispatcher, direction: Direction) {
             // Get the address of the current caller, possibly the player's address.
             let player = get_caller_address();
 
@@ -56,8 +71,8 @@ mod actions {
 
             // Update the world state with the new moves data and position.
             set!(world, (moves, next));
-            // Emit an event to the world to notify about the player's move.
-            // emit!(world, (moves));
+        // Emit an event to the world to notify about the player's move.
+        // emit!(world, (moves));
         }
     }
 }

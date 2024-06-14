@@ -93,7 +93,7 @@
         "name": "spawn",
         "inputs": [],
         "outputs": [],
-        "state_mutability": "view"
+        "state_mutability": "external"
       },
       {
         "type": "function",
@@ -104,6 +104,24 @@
             "type": "dojo_starter::models::moves::Direction"
           }
         ],
+        "outputs": [],
+        "state_mutability": "external"
+      }
+    ]
+  },
+  {
+    "type": "impl",
+    "name": "IDojoInitImpl",
+    "interface_name": "dojo_starter::systems::actions::actions::IDojoInit"
+  },
+  {
+    "type": "interface",
+    "name": "dojo_starter::systems::actions::actions::IDojoInit",
+    "items": [
+      {
+        "type": "function",
+        "name": "dojo_init",
+        "inputs": [],
         "outputs": [],
         "state_mutability": "view"
       }

@@ -27,6 +27,7 @@ echo "--------------------------------------------------------------------------
 sozo auth grant --world $WORLD_ADDRESS --wait writer \
   Position,dojo_starter::systems::actions::actions\
   Moves,dojo_starter::systems::actions::actions\
+  DirectionsAvailable,dojo_starter::systems::actions::actions\
   >/dev/null
 
 echo "Default authorizations have been successfully set."

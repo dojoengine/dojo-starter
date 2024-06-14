@@ -1,7 +1,7 @@
 [package]
-cairo-version = "2.5.4"
+cairo-version = "2.6.3"
 name = "dojo_starter"
-version = "0.6.0"
+version = "0.7.0"
 
 [cairo]
 sierra-replace-ids = true
@@ -12,7 +12,7 @@ spawn = "./scripts/spawn.sh"
 move = "./scripts/move.sh"
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "v0.7.0-alpha.5" }
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "v0.7.0" }
 
 [[target.dojo]]
 
@@ -24,7 +24,7 @@ rpc_url = "http://localhost:5050/"
 # Default account for katana with seed = 0
 account_address = "0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca"
 private_key = "0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a"
-world_address = "0x3b5a8147f17a7ab5d5857a24d0d98574011445db0cab5ac75f588644b2b1517"  # Update this line with your world address
+#world_address = "0x559e9e223d83b6a3121ba33b1339323a3bdf4c7c302078fb3e755fddc68a2fb"  # Update this line with your world address
 
 [tool.dojo.world]
 name = "Dojo starter"
