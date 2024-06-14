@@ -28,9 +28,16 @@ mod actions {
             // Update the world state with the new data.
             // 1. Set the player's remaining moves to 100.
             // 2. Move the player's position 10 units in both the x and y direction.
+            // 3. Set available directions to all four directions. (This is an example of how you can use an array in dojo)
 
             let directions_available = DirectionsAvailable {
-                player, directions: array![1, 2, 3, 4],
+                player,
+                directions: array![
+                    Direction::Up(()),
+                    Direction::Right(()),
+                    Direction::Down(()),
+                    Direction::Left(())
+                ],
             };
 
             set!(

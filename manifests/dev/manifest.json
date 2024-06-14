@@ -976,8 +976,8 @@
     {
       "kind": "DojoContract",
       "address": "0xe3dd66537d069719eba8f3d1ba5ba09872536deffa61f942cf7f862e58ac21",
-      "class_hash": "0x7bd0a0caef2c03408a89540eb6e2918e2fe59044893fdefe2e631312ea1b68d",
-      "original_class_hash": "0x7bd0a0caef2c03408a89540eb6e2918e2fe59044893fdefe2e631312ea1b68d",
+      "class_hash": "0x6a64a76837921dd755d154e8985ff16e55d82ad92d0e7627130b468bb589868",
+      "original_class_hash": "0x6a64a76837921dd755d154e8985ff16e55d82ad92d0e7627130b468bb589868",
       "base_class_hash": "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46",
       "abi": [
         {
@@ -1186,12 +1186,12 @@
         },
         {
           "name": "directions",
-          "type": "Array<u8>",
+          "type": "Array<Direction>",
           "key": false
         }
       ],
-      "class_hash": "0x68f4ff25137df7943a4410b72b00b80461d236b0d33e5bef5de2247a6ba7c85",
-      "original_class_hash": "0x68f4ff25137df7943a4410b72b00b80461d236b0d33e5bef5de2247a6ba7c85",
+      "class_hash": "0x13fc796dd2d767ca4051ee20d673074f74b6e6b072bef1926ba429e427c8080",
+      "original_class_hash": "0x13fc796dd2d767ca4051ee20d673074f74b6e6b072bef1926ba429e427c8080",
       "abi": [
         {
           "type": "impl",
@@ -1517,6 +1517,32 @@
           "interface_name": "dojo_starter::models::moves::Idirections_available"
         },
         {
+          "type": "enum",
+          "name": "dojo_starter::models::moves::Direction",
+          "variants": [
+            {
+              "name": "None",
+              "type": "()"
+            },
+            {
+              "name": "Left",
+              "type": "()"
+            },
+            {
+              "name": "Right",
+              "type": "()"
+            },
+            {
+              "name": "Up",
+              "type": "()"
+            },
+            {
+              "name": "Down",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::moves::DirectionsAvailable",
           "members": [
@@ -1526,7 +1552,7 @@
             },
             {
               "name": "directions",
-              "type": "core::array::Array::<core::integer::u8>"
+              "type": "core::array::Array::<dojo_starter::models::moves::Direction>"
             }
           ]
         },

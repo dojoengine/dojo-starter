@@ -14,7 +14,7 @@ struct Moves {
 struct DirectionsAvailable {
     #[key]
     player: ContractAddress,
-    directions: Array<u8>,
+    directions: Array<Direction>,
 }
 
 #[derive(Serde, Copy, Drop, Introspect)]

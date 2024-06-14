@@ -323,6 +323,32 @@
     "interface_name": "dojo_starter::models::moves::Idirections_available"
   },
   {
+    "type": "enum",
+    "name": "dojo_starter::models::moves::Direction",
+    "variants": [
+      {
+        "name": "None",
+        "type": "()"
+      },
+      {
+        "name": "Left",
+        "type": "()"
+      },
+      {
+        "name": "Right",
+        "type": "()"
+      },
+      {
+        "name": "Up",
+        "type": "()"
+      },
+      {
+        "name": "Down",
+        "type": "()"
+      }
+    ]
+  },
+  {
     "type": "struct",
     "name": "dojo_starter::models::moves::DirectionsAvailable",
     "members": [
@@ -332,7 +358,7 @@
       },
       {
         "name": "directions",
-        "type": "core::array::Array::<core::integer::u8>"
+        "type": "core::array::Array::<dojo_starter::models::moves::Direction>"
       }
     ]
   },

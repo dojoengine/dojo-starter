@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x68f4ff25137df7943a4410b72b00b80461d236b0d33e5bef5de2247a6ba7c85"
-original_class_hash = "0x68f4ff25137df7943a4410b72b00b80461d236b0d33e5bef5de2247a6ba7c85"
+class_hash = "0x13fc796dd2d767ca4051ee20d673074f74b6e6b072bef1926ba429e427c8080"
+original_class_hash = "0x13fc796dd2d767ca4051ee20d673074f74b6e6b072bef1926ba429e427c8080"
 abi = "manifests/dev/abis/base/models/dojo_starter_models_moves_directions_available.json"
 name = "dojo_starter::models::moves::directions_available"
 
@@ -11,5 +11,5 @@ key = true
 
 [[members]]
 name = "directions"
-type = "Array<u8>"
+type = "Array<Direction>"
 key = false
