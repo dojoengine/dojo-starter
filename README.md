@@ -20,7 +20,7 @@
 
 The official Dojo Starter guide, the quickest and most streamlined way to get your Dojo provable game up and running. This guide will assist you with the initial setup, from cloning the repository to deploying your world.
 
-Read the full tutorial [here](https://book.dojoengine.org/tutorial/dojo-starter#hello-dojo)
+Read the full tutorial [here](https://book.dojoengine.org/tutorial/dojo-starter).
 
 ---
 
