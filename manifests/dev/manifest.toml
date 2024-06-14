@@ -1,10 +1,10 @@
 [world]
 kind = "WorldContract"
-class_hash = "0xf6f44afb3cacbcc01a371aff62c86ca9a45feba065424c99f7cd8637514d8f"
-original_class_hash = "0xf6f44afb3cacbcc01a371aff62c86ca9a45feba065424c99f7cd8637514d8f"
+class_hash = "0x3f63cecdc4964acafb921ba2934c6507d1b3c344edb64c2762cf08053169ab9"
+original_class_hash = "0x3f63cecdc4964acafb921ba2934c6507d1b3c344edb64c2762cf08053169ab9"
 abi = "manifests/dev/abis/deployments/dojo_world_world.json"
-address = "0x559e9e223d83b6a3121ba33b1339323a3bdf4c7c302078fb3e755fddc68a2fb"
-transaction_hash = "0x426a655abad7f218400696f9138ef551e2371bdf934f70103b9bd61958e982d"
+address = "0xb4079627ebab1cd3cf9fd075dda1ad2454a7a448bf659591f259efa2519b18"
+transaction_hash = "0x3a729aa09b4ad351fbc724f94c6d599037a53d7d9b5a182097a60fb09d0486c"
 block_number = 3
 seed = "dojo_starter"
 name = "dojo::world::world"
@@ -21,9 +21,9 @@ name = "dojo::base::base"
 
 [[contracts]]
 kind = "DojoContract"
-address = "0xe3dd66537d069719eba8f3d1ba5ba09872536deffa61f942cf7f862e58ac21"
-class_hash = "0x6241fe0afb7dd8fa11909c7acc9ba980d569ec227abb5389ce061e7a0b4e6d5"
-original_class_hash = "0x6241fe0afb7dd8fa11909c7acc9ba980d569ec227abb5389ce061e7a0b4e6d5"
+address = "0x3610b797baec740e2fa25ae90b4a57d92b04f48a1fdbae1ae203eaf9723c1a0"
+class_hash = "0x458bee9fe13c5762aca6b1ca74e64c389e0ee1357e15e1f11f0d402eb5a1f18"
+original_class_hash = "0x458bee9fe13c5762aca6b1ca74e64c389e0ee1357e15e1f11f0d402eb5a1f18"
 base_class_hash = "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46"
 abi = "manifests/dev/abis/deployments/contracts/dojo_starter_systems_actions_actions.json"
 reads = []
@@ -34,6 +34,23 @@ writes = [
 computed = []
 init_calldata = []
 name = "dojo_starter::systems::actions::actions"
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x13fc796dd2d767ca4051ee20d673074f74b6e6b072bef1926ba429e427c8080"
+original_class_hash = "0x13fc796dd2d767ca4051ee20d673074f74b6e6b072bef1926ba429e427c8080"
+abi = "manifests/dev/abis/deployments/models/dojo_starter_models_moves_directions_available.json"
+name = "dojo_starter::models::moves::directions_available"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "directions"
+type = "Array<Direction>"
+key = false
 
 [[models]]
 kind = "DojoModel"
