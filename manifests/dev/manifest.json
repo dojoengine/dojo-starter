@@ -1213,7 +1213,10 @@
         }
       ],
       "reads": [],
-      "writes": [],
+      "writes": [
+        "Position",
+        "Moves"
+      ],
       "computed": [],
       "init_calldata": [],
       "name": "dojo_starter::systems::actions::actions"

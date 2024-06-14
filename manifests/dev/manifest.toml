@@ -27,7 +27,10 @@ original_class_hash = "0x458bee9fe13c5762aca6b1ca74e64c389e0ee1357e15e1f11f0d402
 base_class_hash = "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46"
 abi = "manifests/dev/abis/deployments/contracts/dojo_starter_systems_actions_actions.json"
 reads = []
-writes = []
+writes = [
+    "Position",
+    "Moves",
+]
 computed = []
 init_calldata = []
 name = "dojo_starter::systems::actions::actions"
