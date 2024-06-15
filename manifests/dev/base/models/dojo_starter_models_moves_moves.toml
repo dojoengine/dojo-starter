@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x4cccc308e899b0db11f3e47bcc3bf555d348102e1d89c85e8ba72f5f1098107"
-original_class_hash = "0x4cccc308e899b0db11f3e47bcc3bf555d348102e1d89c85e8ba72f5f1098107"
+class_hash = "0x2f6c0529a3aa4c81c1679408106b2c00013fc19a7088ed9639046c0e3aeac7a"
+original_class_hash = "0x2f6c0529a3aa4c81c1679408106b2c00013fc19a7088ed9639046c0e3aeac7a"
 abi = "manifests/dev/abis/base/models/dojo_starter_models_moves_moves.json"
 name = "dojo_starter::models::moves::moves"
 
@@ -17,4 +17,9 @@ key = false
 [[members]]
 name = "last_direction"
 type = "Direction"
+key = false
+
+[[members]]
+name = "can_move"
+type = "bool"
 key = false

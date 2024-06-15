@@ -349,6 +349,20 @@
     ]
   },
   {
+    "type": "enum",
+    "name": "core::bool",
+    "variants": [
+      {
+        "name": "False",
+        "type": "()"
+      },
+      {
+        "name": "True",
+        "type": "()"
+      }
+    ]
+  },
+  {
     "type": "struct",
     "name": "dojo_starter::models::moves::Moves",
     "members": [
@@ -363,6 +377,10 @@
       {
         "name": "last_direction",
         "type": "dojo_starter::models::moves::Direction"
+      },
+      {
+        "name": "can_move",
+        "type": "core::bool"
       }
     ]
   },
