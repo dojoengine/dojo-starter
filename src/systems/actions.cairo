@@ -18,6 +18,7 @@ mod actions {
     };
 
     #[derive(Copy, Drop, Serde)]
+    #[dojo::model]
     #[dojo::event]
     struct Moved {
         #[key]
