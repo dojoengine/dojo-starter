@@ -42,17 +42,16 @@ mod actions {
             let directions_available = DirectionsAvailable {
                 player,
                 directions: array![
-                    Direction::Up,
-                    Direction::Right,
-                    Direction::Down,
-                    Direction::Left
+                    Direction::Up, Direction::Right, Direction::Down, Direction::Left
                 ],
             };
 
             set!(
                 world,
                 (
-                    Moves { player, remaining: 100, last_direction: Direction::None(()) },
+                    Moves {
+                        player, remaining: 100, last_direction: Direction::None(()), can_move: true
+                    },
                     Position {
                         player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 }
                     },

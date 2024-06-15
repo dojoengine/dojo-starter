@@ -1020,8 +1020,8 @@
     {
       "kind": "DojoContract",
       "address": "0x3610b797baec740e2fa25ae90b4a57d92b04f48a1fdbae1ae203eaf9723c1a0",
-      "class_hash": "0x4d2a67506025fa326dd9f64f9685df6be7cdd827f010469938e9a0931e2cae3",
-      "original_class_hash": "0x4d2a67506025fa326dd9f64f9685df6be7cdd827f010469938e9a0931e2cae3",
+      "class_hash": "0x6b9e8abff1a178c80f9c18a29a35436d48759a1bcada1f074b1821df0f87119",
+      "original_class_hash": "0x6b9e8abff1a178c80f9c18a29a35436d48759a1bcada1f074b1821df0f87119",
       "base_class_hash": "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46",
       "abi": [
         {
@@ -1215,7 +1215,8 @@
       "reads": [],
       "writes": [
         "Position",
-        "Moves"
+        "Moves",
+        "DirectionsAvailable"
       ],
       "computed": [],
       "init_calldata": [],
@@ -1647,10 +1648,15 @@
           "name": "last_direction",
           "type": "Direction",
           "key": false
+        },
+        {
+          "name": "can_move",
+          "type": "bool",
+          "key": false
         }
       ],
-      "class_hash": "0x4cccc308e899b0db11f3e47bcc3bf555d348102e1d89c85e8ba72f5f1098107",
-      "original_class_hash": "0x4cccc308e899b0db11f3e47bcc3bf555d348102e1d89c85e8ba72f5f1098107",
+      "class_hash": "0x2f6c0529a3aa4c81c1679408106b2c00013fc19a7088ed9639046c0e3aeac7a",
+      "original_class_hash": "0x2f6c0529a3aa4c81c1679408106b2c00013fc19a7088ed9639046c0e3aeac7a",
       "abi": [
         {
           "type": "impl",
@@ -2002,6 +2008,20 @@
           ]
         },
         {
+          "type": "enum",
+          "name": "core::bool",
+          "variants": [
+            {
+              "name": "False",
+              "type": "()"
+            },
+            {
+              "name": "True",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::moves::Moves",
           "members": [
@@ -2016,6 +2036,10 @@
             {
               "name": "last_direction",
               "type": "dojo_starter::models::moves::Direction"
+            },
+            {
+              "name": "can_move",
+              "type": "core::bool"
             }
           ]
         },
