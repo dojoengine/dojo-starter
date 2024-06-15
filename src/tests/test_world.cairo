@@ -12,7 +12,6 @@ mod tests {
     };
 
     #[test]
-    #[available_gas(30000000)]
     fn test_move() {
         // caller
         let caller = starknet::contract_address_const::<0x0>();

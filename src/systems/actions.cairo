@@ -17,6 +17,15 @@ mod actions {
         position::{Position, Vec2}, moves::{Moves, Direction, DirectionsAvailable}
     };
 
+    #[derive(Copy, Drop, Serde)]
+    #[dojo::model]
+    #[dojo::event]
+    struct Moved {
+        #[key]
+        player: ContractAddress,
+        direction: Direction,
+    }
+
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
         fn spawn(ref world: IWorldDispatcher) {
@@ -70,8 +79,8 @@ mod actions {
 
             // Update the world state with the new moves data and position.
             set!(world, (moves, next));
-        // Emit an event to the world to notify about the player's move.
-        // emit!(world, (moves));
+            // Emit an event to the world to notify about the player's move.
+            emit!(world, (Moved { player, direction }));
         }
     }
 }
