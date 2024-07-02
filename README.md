@@ -22,6 +22,26 @@ The official Dojo Starter guide, the quickest and most streamlined way to get yo
 
 Read the full tutorial [here](https://book.dojoengine.org/tutorial/dojo-starter).
 
+## Running Locally
+
+#### Terminal one (Make sure this is running)
+```bash
+# Run Katana
+katana --disable-fee --allowed-origins "*"
+```
+
+#### Terminal two
+```bash
+# Build the example
+sozo build
+
+# Migrate the example
+sozo migrate apply
+
+# Start Torii
+torii --world 0xb4079627ebab1cd3cf9fd075dda1ad2454a7a448bf659591f259efa2519b18 --allowed-origins "*"
+```
+
 ---
 
 ## Contribution
