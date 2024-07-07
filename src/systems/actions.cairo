@@ -33,7 +33,6 @@ mod actions {
             let player = get_caller_address();
             // Retrieve the player's current position from the world.
             let position = get!(world, player, (Position));
-
             // Update the world state with the new data.
             // 1. Set the player's remaining moves to 100.
             // 2. Move the player's position 10 units in both the x and y direction.
@@ -45,7 +44,6 @@ mod actions {
                     Direction::Up, Direction::Right, Direction::Down, Direction::Left
                 ],
             };
-
             set!(
                 world,
                 (
@@ -55,7 +53,7 @@ mod actions {
                     Position {
                         player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 }
                     },
-                    directions_available
+                // DirectionsAvailable { player, directions: array![Direction::Up], }
                 )
             );
         }

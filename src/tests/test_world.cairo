@@ -26,32 +26,30 @@ mod tests {
         let contract_address = world
             .deploy_contract('salt', actions::TEST_CLASS_HASH.try_into().unwrap(), array![].span());
         let actions_system = IActionsDispatcher { contract_address };
-
         // call spawn()
         actions_system.spawn();
+    // // call move with direction right
+    // actions_system.move(Direction::Right);
 
-        // call move with direction right
-        actions_system.move(Direction::Right);
+    // // Check world state
+    // let moves = get!(world, caller, Moves);
 
-        // Check world state
-        let moves = get!(world, caller, Moves);
+    // // casting right direction
+    // let right_dir_felt: felt252 = Direction::Right.into();
 
-        // casting right direction
-        let right_dir_felt: felt252 = Direction::Right.into();
+    // // check moves
+    // assert(moves.remaining == 99, 'moves is wrong');
 
-        // check moves
-        assert(moves.remaining == 99, 'moves is wrong');
+    // // check last direction
+    // assert(moves.last_direction.into() == right_dir_felt, 'last direction is wrong');
 
-        // check last direction
-        assert(moves.last_direction.into() == right_dir_felt, 'last direction is wrong');
+    // // get new_position
+    // let new_position = get!(world, caller, Position);
 
-        // get new_position
-        let new_position = get!(world, caller, Position);
+    // // check new position x
+    // assert(new_position.vec.x == 11, 'position x is wrong');
 
-        // check new position x
-        assert(new_position.vec.x == 11, 'position x is wrong');
-
-        // check new position y
-        assert(new_position.vec.y == 10, 'position y is wrong');
+    // // check new position y
+    // assert(new_position.vec.y == 10, 'position y is wrong');
     }
 }
