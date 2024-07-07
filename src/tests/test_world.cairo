@@ -20,7 +20,7 @@ mod tests {
         let mut models = array![position::TEST_CLASS_HASH, moves::TEST_CLASS_HASH];
 
         // deploy world with models
-        let world = spawn_test_world(models);
+        let world = spawn_test_world("dojo_starter", models);
 
         // deploy systems contract
         let contract_address = world
