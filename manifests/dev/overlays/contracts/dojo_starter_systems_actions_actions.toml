@@ -1,4 +1,0 @@
-name = "dojo_starter::systems::actions::actions"
-reads = []
-writes = ["Position", "Moves", "DirectionsAvailable"]
-init_calldata = []

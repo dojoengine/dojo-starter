@@ -273,6 +273,39 @@
       },
       {
         "type": "function",
+        "name": "namespace",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "namespace_selector",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::felt252"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "tag",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
         "name": "unpacked_size",
         "inputs": [],
         "outputs": [
@@ -319,8 +352,8 @@
   },
   {
     "type": "impl",
-    "name": "movedImpl",
-    "interface_name": "dojo_starter::systems::actions::actions::Imoved"
+    "name": "directions_availableImpl",
+    "interface_name": "dojo_starter::models::moves::Idirections_available"
   },
   {
     "type": "enum",
@@ -350,21 +383,21 @@
   },
   {
     "type": "struct",
-    "name": "dojo_starter::systems::actions::actions::Moved",
+    "name": "dojo_starter::models::moves::DirectionsAvailable",
     "members": [
       {
         "name": "player",
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "direction",
-        "type": "dojo_starter::models::moves::Direction"
+        "name": "directions",
+        "type": "core::array::Array::<dojo_starter::models::moves::Direction>"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::systems::actions::actions::Imoved",
+    "name": "dojo_starter::models::moves::Idirections_available",
     "items": [
       {
         "type": "function",
@@ -372,7 +405,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::systems::actions::actions::Moved"
+            "type": "dojo_starter::models::moves::DirectionsAvailable"
           }
         ],
         "outputs": [],
@@ -382,7 +415,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::systems::actions::actions::moved::Event",
+    "name": "dojo_starter::models::moves::directions_available::Event",
     "kind": "enum",
     "variants": []
   }
