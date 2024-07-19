@@ -240,18 +240,29 @@
     "items": [
       {
         "type": "function",
-        "name": "selector",
+        "name": "name",
         "inputs": [],
         "outputs": [
           {
-            "type": "core::felt252"
+            "type": "core::byte_array::ByteArray"
           }
         ],
         "state_mutability": "view"
       },
       {
         "type": "function",
-        "name": "name",
+        "name": "namespace",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "tag",
         "inputs": [],
         "outputs": [
           {
@@ -273,18 +284,7 @@
       },
       {
         "type": "function",
-        "name": "namespace",
-        "inputs": [],
-        "outputs": [
-          {
-            "type": "core::byte_array::ByteArray"
-          }
-        ],
-        "state_mutability": "view"
-      },
-      {
-        "type": "function",
-        "name": "namespace_selector",
+        "name": "selector",
         "inputs": [],
         "outputs": [
           {
@@ -295,11 +295,22 @@
       },
       {
         "type": "function",
-        "name": "tag",
+        "name": "name_hash",
         "inputs": [],
         "outputs": [
           {
-            "type": "core::byte_array::ByteArray"
+            "type": "core::felt252"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "namespace_hash",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::felt252"
           }
         ],
         "state_mutability": "view"
@@ -352,52 +363,40 @@
   },
   {
     "type": "impl",
-    "name": "directions_availableImpl",
-    "interface_name": "dojo_starter::models::moves::Idirections_available"
+    "name": "positionImpl",
+    "interface_name": "dojo_starter::models::position::Iposition"
   },
   {
-    "type": "enum",
-    "name": "dojo_starter::models::moves::Direction",
-    "variants": [
+    "type": "struct",
+    "name": "dojo_starter::models::position::Vec2",
+    "members": [
       {
-        "name": "None",
-        "type": "()"
+        "name": "x",
+        "type": "core::integer::u32"
       },
       {
-        "name": "Left",
-        "type": "()"
-      },
-      {
-        "name": "Right",
-        "type": "()"
-      },
-      {
-        "name": "Up",
-        "type": "()"
-      },
-      {
-        "name": "Down",
-        "type": "()"
+        "name": "y",
+        "type": "core::integer::u32"
       }
     ]
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::moves::DirectionsAvailable",
+    "name": "dojo_starter::models::position::Position",
     "members": [
       {
         "name": "player",
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "directions",
-        "type": "core::array::Array::<dojo_starter::models::moves::Direction>"
+        "name": "vec",
+        "type": "dojo_starter::models::position::Vec2"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::models::moves::Idirections_available",
+    "name": "dojo_starter::models::position::Iposition",
     "items": [
       {
         "type": "function",
@@ -405,7 +404,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::models::moves::DirectionsAvailable"
+            "type": "dojo_starter::models::position::Position"
           }
         ],
         "outputs": [],
@@ -415,7 +414,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::models::moves::directions_available::Event",
+    "name": "dojo_starter::models::position::position::Event",
     "kind": "enum",
     "variants": []
   }

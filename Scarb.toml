@@ -12,7 +12,7 @@ spawn = "./scripts/spawn.sh"
 move = "./scripts/move.sh"
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.0-alpha.0" }
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.0-alpha.1" }
 
 [[target.dojo]]
 
@@ -24,7 +24,7 @@ rpc_url = "http://localhost:5050/"
 # Default account for katana with seed = 0
 account_address = "0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca"
 private_key = "0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a"
-#world_address = "0xb4079627ebab1cd3cf9fd075dda1ad2454a7a448bf659591f259efa2519b18"  # Uncomment and update this line with your world address.
+world_address = "0x16a15cc2a571bf95eef741c701a5657e4dbf1a5b9ce3785b4060b60f58913f4"  # Uncomment and update this line with your world address.
 
 [tool.dojo.world]
 name = "Dojo starter"
@@ -33,7 +33,9 @@ cover_uri = "file://assets/cover.png"
 icon_uri = "file://assets/icon.png"
 website = "https://github.com/dojoengine/dojo-starter"
 seed = "dojo_starter"
-namespace = "dojo_starter"
+
+[tool.dojo.world.namespace]
+default = "dojo_starter"
 
 [tool.dojo.world.socials]
 x = "https://x.com/ohayo_dojo"

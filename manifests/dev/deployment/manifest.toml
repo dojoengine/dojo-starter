@@ -1,0 +1,122 @@
+[world]
+kind = "WorldContract"
+class_hash = "0x26a8f65e0b0ba2a6d2f9e93d4f72f75eabebb853ea7413e134b3902ea352557"
+original_class_hash = "0x26a8f65e0b0ba2a6d2f9e93d4f72f75eabebb853ea7413e134b3902ea352557"
+abi = "manifests/dev/deployment/abis/dojo-world.json"
+address = "0x16a15cc2a571bf95eef741c701a5657e4dbf1a5b9ce3785b4060b60f58913f4"
+transaction_hash = "0x3eccec45e17ea685f63abeb94b544c000c5520d18177b75e712a8ae38f840cc"
+block_number = 3
+seed = "dojo_starter"
+manifest_name = "dojo-world"
+
+[world.metadata]
+profile_name = "dev"
+rpc_url = "http://localhost:5050/"
+
+[base]
+kind = "Class"
+class_hash = "0x26a4f5d2d9638877a2648297339275df5eaab0adb3cdf0010887c2dbf2be4"
+original_class_hash = "0x26a4f5d2d9638877a2648297339275df5eaab0adb3cdf0010887c2dbf2be4"
+abi = "manifests/dev/deployment/abis/dojo-base.json"
+tag = "dojo-base"
+manifest_name = "dojo-base"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x60b74f2493ef869ce406ca2ee3981caea120f7c66f7cd8e45e70f4805472010"
+class_hash = "0x75070bf823315b1b592dd4e431fc30e380098cced30f09bb3d8ea081926419c"
+original_class_hash = "0x75070bf823315b1b592dd4e431fc30e380098cced30f09bb3d8ea081926419c"
+base_class_hash = "0x26a4f5d2d9638877a2648297339275df5eaab0adb3cdf0010887c2dbf2be4"
+abi = "manifests/dev/deployment/abis/contracts/dojo_starter-actions-7a1c7102.json"
+reads = []
+writes = [
+    "dojo_starter-Moves",
+    "dojo_starter-Position",
+    "dojo_starter-DirectionsAvailable",
+]
+computed = []
+init_calldata = []
+tag = "dojo_starter-actions"
+manifest_name = "dojo_starter-actions-7a1c7102"
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x2220d0dfcf00ed38537c8025ed22807b29d0023e119550ec1017314624426e"
+original_class_hash = "0x2220d0dfcf00ed38537c8025ed22807b29d0023e119550ec1017314624426e"
+abi = "manifests/dev/deployment/abis/models/dojo_starter-DirectionsAvailable-77844f1f.json"
+tag = "dojo_starter-DirectionsAvailable"
+manifest_name = "dojo_starter-DirectionsAvailable-77844f1f"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "directions"
+type = "Array<Direction>"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x488613c8e3854add0667f4096f45a7d15202d1bd68e0c5b552e9030e282dea7"
+original_class_hash = "0x488613c8e3854add0667f4096f45a7d15202d1bd68e0c5b552e9030e282dea7"
+abi = "manifests/dev/deployment/abis/models/dojo_starter-Moved-504403e5.json"
+tag = "dojo_starter-Moved"
+manifest_name = "dojo_starter-Moved-504403e5"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "direction"
+type = "Direction"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x34dfd2dc5076a3fc4999079588c17db90d506f9925d6ede6c353e1ea4d0cf6f"
+original_class_hash = "0x34dfd2dc5076a3fc4999079588c17db90d506f9925d6ede6c353e1ea4d0cf6f"
+abi = "manifests/dev/deployment/abis/models/dojo_starter-Moves-2a29373f.json"
+tag = "dojo_starter-Moves"
+manifest_name = "dojo_starter-Moves-2a29373f"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "remaining"
+type = "u8"
+key = false
+
+[[models.members]]
+name = "last_direction"
+type = "Direction"
+key = false
+
+[[models.members]]
+name = "can_move"
+type = "bool"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x6aa14d416af2f19bd37237259f92fa1cd5a708182851b43bd9e047b1dd2e67"
+original_class_hash = "0x6aa14d416af2f19bd37237259f92fa1cd5a708182851b43bd9e047b1dd2e67"
+abi = "manifests/dev/deployment/abis/models/dojo_starter-Position-2ac8b4c1.json"
+tag = "dojo_starter-Position"
+manifest_name = "dojo_starter-Position-2ac8b4c1"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "vec"
+type = "Vec2"
+key = false
