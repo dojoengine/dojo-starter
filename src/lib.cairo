@@ -2,10 +2,7 @@ mod systems {
     mod actions;
 }
 
-mod models {
-    mod moves;
-    mod position;
-}
+mod models;
 
 mod tests {
     mod test_world;

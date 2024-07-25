@@ -8,7 +8,7 @@ mod tests {
     // import test utils
     use dojo_starter::{
         systems::{actions::{actions, IActionsDispatcher, IActionsDispatcherTrait}},
-        models::{position::{Position, Vec2, position}, moves::{Moves, Direction, moves}}
+        models::{{Position, Vec2, position, Moves, Direction, moves}}
     };
 
     #[test]
