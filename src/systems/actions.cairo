@@ -1,5 +1,5 @@
-use dojo_starter::models::moves::Direction;
-use dojo_starter::models::position::Position;
+use dojo_starter::models::Direction;
+use dojo_starter::models::Position;
 
 // define the interface
 #[dojo::interface]
@@ -13,9 +13,7 @@ trait IActions {
 mod actions {
     use super::{IActions, next_position};
     use starknet::{ContractAddress, get_caller_address};
-    use dojo_starter::models::{
-        position::{Position, Vec2}, moves::{Moves, Direction, DirectionsAvailable}
-    };
+    use dojo_starter::models::{Position, Vec2, Moves, Direction, DirectionsAvailable};
 
     #[derive(Copy, Drop, Serde)]
     #[dojo::model]
@@ -33,18 +31,9 @@ mod actions {
             let player = get_caller_address();
             // Retrieve the player's current position from the world.
             let position = get!(world, player, (Position));
-
             // Update the world state with the new data.
             // 1. Set the player's remaining moves to 100.
             // 2. Move the player's position 10 units in both the x and y direction.
-            // 3. Set available directions to all four directions. (This is an example of how you can use an array in Dojo).
-
-            let directions_available = DirectionsAvailable {
-                player,
-                directions: array![
-                    Direction::Up, Direction::Right, Direction::Down, Direction::Left
-                ],
-            };
 
             set!(
                 world,
@@ -55,7 +44,6 @@ mod actions {
                     Position {
                         player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 }
                     },
-                    directions_available
                 )
             );
         }

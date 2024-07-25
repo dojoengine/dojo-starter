@@ -1,0 +1,16 @@
+kind = "DojoModel"
+class_hash = "0x559b178cd83f2c888c17628cafcb6de68a1757551c54440a63dac2f9621c7b5"
+original_class_hash = "0x559b178cd83f2c888c17628cafcb6de68a1757551c54440a63dac2f9621c7b5"
+abi = "manifests/dev/base/abis/models/dojo_starter-DirectionsAvailable-77844f1f.json"
+tag = "dojo_starter-DirectionsAvailable"
+manifest_name = "dojo_starter-DirectionsAvailable-77844f1f"
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "directions"
+type = "Array<Direction>"
+key = false
