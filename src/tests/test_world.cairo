@@ -23,8 +23,11 @@ mod tests {
 
         // deploy systems contract
         let contract_address = world
-            .deploy_contract('salt', actions::TEST_CLASS_HASH.try_into().unwrap(), array![].span());
+            .deploy_contract('salt', actions::TEST_CLASS_HASH.try_into().unwrap());
         let actions_system = IActionsDispatcher { contract_address };
+
+        world.grant_writer(dojo::utils::bytearray_hash(@"dojo_starter"), contract_address);
+
         // call spawn()
         actions_system.spawn();
 
