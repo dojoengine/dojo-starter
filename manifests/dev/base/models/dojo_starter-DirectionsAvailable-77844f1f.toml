@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x559b178cd83f2c888c17628cafcb6de68a1757551c54440a63dac2f9621c7b5"
-original_class_hash = "0x559b178cd83f2c888c17628cafcb6de68a1757551c54440a63dac2f9621c7b5"
+class_hash = "0x72c6666cfeebc41544f502cfe9c32ad7b91fce12881709420335794dfcb324a"
+original_class_hash = "0x72c6666cfeebc41544f502cfe9c32ad7b91fce12881709420335794dfcb324a"
 abi = "manifests/dev/base/abis/models/dojo_starter-DirectionsAvailable-77844f1f.json"
 tag = "dojo_starter-DirectionsAvailable"
 manifest_name = "dojo_starter-DirectionsAvailable-77844f1f"
