@@ -25,12 +25,14 @@ Read the full tutorial [here](https://book.dojoengine.org/tutorial/dojo-starter)
 ## Running Locally
 
 #### Terminal one (Make sure this is running)
+
 ```bash
 # Run Katana
 katana --disable-fee --allowed-origins "*"
 ```
 
 #### Terminal two
+
 ```bash
 # Build the example
 sozo build
@@ -39,7 +41,7 @@ sozo build
 sozo migrate apply
 
 # Start Torii
-torii --world 0x403b5f047b8c4797139e30801e310473d99ca6877d19e0f27506f353f8f70f7 --allowed-origins "*"
+torii --world 0x3b34889efbdf01f707d5d7421f112e8fb85a42fb6f2e5422c75ce3253148b0e --allowed-origins "*"
 ```
 
 ---
@@ -50,13 +52,13 @@ This starter project is a constant work in progress and contributions are greatl
 
 1. **Report a Bug**
 
-   - If you think you have encountered a bug, and we should know about it, feel free to report it [here](https://github.com/dojoengine/dojo-starter/issues) and we will take care of it.
+    - If you think you have encountered a bug, and we should know about it, feel free to report it [here](https://github.com/dojoengine/dojo-starter/issues) and we will take care of it.
 
 2. **Request a Feature**
 
-   - You can also request for a feature [here](https://github.com/dojoengine/dojo-starter/issues), and if it's viable, it will be picked for development.
+    - You can also request for a feature [here](https://github.com/dojoengine/dojo-starter/issues), and if it's viable, it will be picked for development.
 
 3. **Create a Pull Request**
-   - It can't get better then this, your pull request will be appreciated by the community.
+    - It can't get better then this, your pull request will be appreciated by the community.
 
 Happy coding!
