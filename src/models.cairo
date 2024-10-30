@@ -1,6 +1,6 @@
 use starknet::ContractAddress;
 
-#[derive(Copy, Drop, Serde)]
+#[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
 pub struct Moves {
     #[key]
@@ -10,7 +10,7 @@ pub struct Moves {
     pub can_move: bool,
 }
 
-#[derive(Drop, Serde)]
+#[derive(Drop, Serde, Debug)]
 #[dojo::model]
 pub struct DirectionsAvailable {
     #[key]
@@ -18,7 +18,7 @@ pub struct DirectionsAvailable {
     pub directions: Array<Direction>,
 }
 
-#[derive(Copy, Drop, Serde)]
+#[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
 pub struct Position {
     #[key]
@@ -27,7 +27,7 @@ pub struct Position {
 }
 
 
-#[derive(Serde, Copy, Drop, Introspect)]
+#[derive(Serde, Copy, Drop, Introspect, PartialEq, Debug)]
 pub enum Direction {
     None,
     Left,
@@ -37,7 +37,7 @@ pub enum Direction {
 }
 
 
-#[derive(Copy, Drop, Serde, Introspect)]
+#[derive(Copy, Drop, Serde, IntrospectPacked, Debug)]
 pub struct Vec2 {
     pub x: u32,
     pub y: u32
