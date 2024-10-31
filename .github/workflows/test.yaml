@@ -8,7 +8,7 @@ jobs:
     sozo-test:
         runs-on: ubuntu-latest
         env:
-            DOJO_VERSION: v1.0.0-alpha.17
+            DOJO_VERSION: v1.0.0-rc.0
         steps:
             - uses: actions/checkout@v3
             - run: curl -L https://install.dojoengine.org | bash
