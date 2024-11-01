@@ -40,7 +40,7 @@ katana --disable-fee --allowed-origins "*"
 sozo build
 
 # Migrate the example
-sozo migrate apply
+sozo migrate
 
 # Start Torii
 # Replace <WORLD_ADDRESS> with the address of the deployed world from the previous step
