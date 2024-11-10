@@ -1,8 +1,9 @@
 #[cfg(test)]
 mod tests {
-    use dojo::model::{ModelStorage, ModelValueStorage, ModelStorageTest};
+    use dojo_cairo_test::WorldStorageTestTrait;
+use dojo::model::{ModelStorage, ModelValueStorage, ModelStorageTest};
     use dojo::world::WorldStorageTrait;
-    use dojo_cairo_test::{spawn_test_world, NamespaceDef, TestResource, ContractDefTrait};
+    use dojo_cairo_test::{spawn_test_world, NamespaceDef, TestResource, ContractDefTrait, ContractDef};
 
     use dojo_starter::systems::actions::{actions, IActionsDispatcher, IActionsDispatcherTrait};
     use dojo_starter::models::{Position, m_Position, Moves, m_Moves, Direction};
@@ -10,17 +11,21 @@ mod tests {
     fn namespace_def() -> NamespaceDef {
         let ndef = NamespaceDef {
             namespace: "dojo_starter", resources: [
-                TestResource::Model(m_Position::TEST_CLASS_HASH.try_into().unwrap()),
-                TestResource::Model(m_Moves::TEST_CLASS_HASH.try_into().unwrap()),
-                TestResource::Event(actions::e_Moved::TEST_CLASS_HASH.try_into().unwrap()),
-                TestResource::Contract(
-                    ContractDefTrait::new(actions::TEST_CLASS_HASH, "actions")
-                        .with_writer_of([dojo::utils::bytearray_hash(@"dojo_starter")].span())
-                )
+                TestResource::Model(m_Position::TEST_CLASS_HASH),
+                TestResource::Model(m_Moves::TEST_CLASS_HASH),
+                TestResource::Event(actions::e_Moved::TEST_CLASS_HASH),
+                TestResource::Contract(actions::TEST_CLASS_HASH)
             ].span()
         };
 
         ndef
+    }
+
+    fn contract_defs() -> Span<ContractDef> {
+        [
+            ContractDefTrait::new(@"dojo_starter", @"actions")
+                .with_writer_of([dojo::utils::bytearray_hash(@"dojo_starter")].span())
+        ].span()
     }
 
     #[test]
@@ -28,7 +33,12 @@ mod tests {
         // Initialize test environment
         let caller = starknet::contract_address_const::<0x0>();
         let ndef = namespace_def();
+
+        // Register the resources.
         let mut world = spawn_test_world([ndef].span());
+
+        // Ensures permissions and initializations are synced.
+        world.sync_perms_and_inits(contract_defs());
 
         // Test initial position
         let mut position: Position = world.read_model(caller);
@@ -56,6 +66,7 @@ mod tests {
 
         let ndef = namespace_def();
         let mut world = spawn_test_world([ndef].span());
+        world.sync_perms_and_inits(contract_defs());
 
         let (contract_address, _) = world.dns(@"actions").unwrap();
         let actions_system = IActionsDispatcher { contract_address };
