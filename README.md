@@ -30,7 +30,7 @@ Read the full tutorial [here](https://dojoengine.org/tutorial/dojo-starter).
 
 ```bash
 # Run Katana
-katana --disable-fee --allowed-origins "*"
+katana --dev --dev.no-fee
 ```
 
 #### Terminal two
@@ -39,12 +39,15 @@ katana --disable-fee --allowed-origins "*"
 # Build the example
 sozo build
 
+# Inspect the world
+sozo inspect
+
 # Migrate the example
 sozo migrate
 
 # Start Torii
 # Replace <WORLD_ADDRESS> with the address of the deployed world from the previous step
-torii --world <WORLD_ADDRESS> --allowed-origins "*"
+torii --world <WORLD_ADDRESS> --http.cors_origins "*"
 ```
 
 ---
