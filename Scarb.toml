@@ -1,7 +1,7 @@
 [package]
 cairo-version = "=2.8.4"
 name = "dojo_starter"
-version = "1.0.2"
+version = "1.0.8"
 
 [cairo]
 sierra-replace-ids = true
@@ -12,10 +12,10 @@ spawn = "sozo execute dojo_starter-actions spawn --wait"    # scarb run spawn
 move = "sozo execute dojo_starter-actions move -c 1 --wait" # scarb run move
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.2" }
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.8" }
 
 [[target.starknet-contract]]
 build-external-contracts = ["dojo::world::world_contract::world"]
 
 [dev-dependencies]
-dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.2" }
+dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.8" }
