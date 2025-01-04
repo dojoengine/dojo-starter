@@ -48,7 +48,7 @@ pub mod actions {
 
             // 2. Set the player's remaining moves to 100.
             let moves = Moves {
-                player, remaining: 100, last_direction: Direction::None(()), can_move: true
+                player, remaining: 100, last_direction: Option::None, can_move: true
             };
 
             // Write the new moves to the world.
@@ -66,15 +66,20 @@ pub mod actions {
             // Retrieve the player's current position and moves data from the world.
             let position: Position = world.read_model(player);
             let mut moves: Moves = world.read_model(player);
+            // if player hasn't spawn, read returns model default values. This leads to sub overflow afterwards.
+            // Plus it's generally considered as a good pratice to fast-return on matching conditions.
+            if !moves.can_move {
+                return;
+            }
 
             // Deduct one from the player's remaining moves.
             moves.remaining -= 1;
 
             // Update the last direction the player moved in.
-            moves.last_direction = direction;
+            moves.last_direction = Option::Some(direction);
 
             // Calculate the player's next position based on the provided direction.
-            let next = next_position(position, direction);
+            let next = next_position(position, moves.last_direction);
 
             // Write the new position to the world.
             world.write_model(@next);
@@ -98,13 +103,15 @@ pub mod actions {
 }
 
 // Define function like this:
-fn next_position(mut position: Position, direction: Direction) -> Position {
+fn next_position(mut position: Position, direction: Option<Direction>) -> Position {
     match direction {
-        Direction::None => { return position; },
-        Direction::Left => { position.vec.x -= 1; },
-        Direction::Right => { position.vec.x += 1; },
-        Direction::Up => { position.vec.y -= 1; },
-        Direction::Down => { position.vec.y += 1; },
+        Option::None => { return position; },
+        Option::Some(d) => match d {
+            Direction::Left => { position.vec.x -= 1; },
+            Direction::Right => { position.vec.x += 1; },
+            Direction::Up => { position.vec.y -= 1; },
+            Direction::Down => { position.vec.y += 1; },
+        }
     };
     position
 }

@@ -1,4 +1,4 @@
-use starknet::ContractAddress;
+use starknet::{ContractAddress};
 
 #[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
@@ -6,7 +6,7 @@ pub struct Moves {
     #[key]
     pub player: ContractAddress,
     pub remaining: u8,
-    pub last_direction: Direction,
+    pub last_direction: Option<Direction>,
     pub can_move: bool,
 }
 
@@ -29,7 +29,6 @@ pub struct Position {
 
 #[derive(Serde, Copy, Drop, Introspect, PartialEq, Debug)]
 pub enum Direction {
-    None,
     Left,
     Right,
     Up,
@@ -47,7 +46,6 @@ pub struct Vec2 {
 impl DirectionIntoFelt252 of Into<Direction, felt252> {
     fn into(self: Direction) -> felt252 {
         match self {
-            Direction::None => 0,
             Direction::Left => 1,
             Direction::Right => 2,
             Direction::Up => 3,
@@ -56,6 +54,14 @@ impl DirectionIntoFelt252 of Into<Direction, felt252> {
     }
 }
 
+impl OptionDirectionIntoFelt252 of Into<Option<Direction>, felt252> {
+    fn into(self: Option<Direction>) -> felt252 {
+        match self {
+            Option::None => 0,
+            Option::Some(d) => d.into(),
+        }
+    }
+}
 
 #[generate_trait]
 impl Vec2Impl of Vec2Trait {
