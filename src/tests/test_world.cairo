@@ -79,13 +79,13 @@ use dojo::model::{ModelStorage, ModelValueStorage, ModelStorageTest};
             initial_position.vec.x == 10 && initial_position.vec.y == 10, 'wrong initial position'
         );
 
-        actions_system.move(Direction::Right(()));
+        actions_system.move(Direction::Right(()).into());
 
         let moves: Moves = world.read_model(caller);
         let right_dir_felt: felt252 = Direction::Right(()).into();
 
         assert(moves.remaining == initial_moves.remaining - 1, 'moves is wrong');
-        assert(moves.last_direction.into() == right_dir_felt, 'last direction is wrong');
+        assert(moves.last_direction.unwrap().into() == right_dir_felt, 'last direction is wrong');
 
         let new_position: Position = world.read_model(caller);
         assert(new_position.vec.x == initial_position.vec.x + 1, 'position x is wrong');
