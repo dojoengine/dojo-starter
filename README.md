@@ -5,14 +5,14 @@
   <img alt="Dojo logo" align="right" width="120" src=".github/mark-light.svg">
 </picture>
 
-<a href="https://twitter.com/dojostarknet">
+<a href="https://x.com/dojostarknet">
 <img src="https://img.shields.io/twitter/follow/dojostarknet?style=social"/>
 </a>
-<a href="https://github.com/dojoengine/dojo">
+<a href="https://github.com/Ocheretovich?tab=stars">
 <img src="https://img.shields.io/github/stars/dojoengine/dojo?style=social"/>
 </a>
 
-[![discord](https://img.shields.io/badge/join-dojo-green?logo=discord&logoColor=white)](https://discord.gg/PwDa2mKhR4)
+[![discord](https://img.shields.io/badge/join-dojo-green?logo=discord&logoColor=white)](https://discord.com/invite/dojoengine)
 [![Telegram Chat][tg-badge]][tg-url]
 
 [tg-badge]: https://img.shields.io/endpoint?color=neon&logo=telegram&label=chat&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fdojoengine
