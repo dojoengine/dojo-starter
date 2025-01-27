@@ -8,7 +8,7 @@
 <a href="https://x.com/dojostarknet">
 <img src="https://img.shields.io/twitter/follow/dojostarknet?style=social"/>
 </a>
-<a href="https://github.com/Ocheretovich?tab=stars">
+<a href="https://github.com/dojoengine/dojo/stargazers">
 <img src="https://img.shields.io/github/stars/dojoengine/dojo?style=social"/>
 </a>
 
