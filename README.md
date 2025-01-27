@@ -5,7 +5,7 @@
   <img alt="Dojo logo" align="right" width="120" src=".github/mark-light.svg">
 </picture>
 
-<a href="https://x.com/dojostarknet">
+<a href="https://x.com/ohayo_dojo">
 <img src="https://img.shields.io/twitter/follow/dojostarknet?style=social"/>
 </a>
 <a href="https://github.com/dojoengine/dojo/stargazers">
