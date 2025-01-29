@@ -1,9 +1,9 @@
-mod systems {
-    mod actions;
+pub mod systems {
+    pub mod actions;
 }
 
-mod models;
+pub mod models;
 
-mod tests {
+pub mod tests {
     mod test_world;
 }

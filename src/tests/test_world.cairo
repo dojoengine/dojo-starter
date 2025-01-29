@@ -1,21 +1,25 @@
 #[cfg(test)]
 mod tests {
     use dojo_cairo_test::WorldStorageTestTrait;
-use dojo::model::{ModelStorage, ModelValueStorage, ModelStorageTest};
+    use dojo::model::{ModelStorage, ModelStorageTest};
     use dojo::world::WorldStorageTrait;
-    use dojo_cairo_test::{spawn_test_world, NamespaceDef, TestResource, ContractDefTrait, ContractDef};
+    use dojo_cairo_test::{
+        spawn_test_world, NamespaceDef, TestResource, ContractDefTrait, ContractDef,
+    };
 
     use dojo_starter::systems::actions::{actions, IActionsDispatcher, IActionsDispatcherTrait};
     use dojo_starter::models::{Position, m_Position, Moves, m_Moves, Direction};
 
     fn namespace_def() -> NamespaceDef {
         let ndef = NamespaceDef {
-            namespace: "dojo_starter", resources: [
+            namespace: "dojo_starter",
+            resources: [
                 TestResource::Model(m_Position::TEST_CLASS_HASH),
                 TestResource::Model(m_Moves::TEST_CLASS_HASH),
                 TestResource::Event(actions::e_Moved::TEST_CLASS_HASH),
-                TestResource::Contract(actions::TEST_CLASS_HASH)
-            ].span()
+                TestResource::Contract(actions::TEST_CLASS_HASH),
+            ]
+                .span(),
         };
 
         ndef
@@ -25,7 +29,8 @@ use dojo::model::{ModelStorage, ModelValueStorage, ModelStorageTest};
         [
             ContractDefTrait::new(@"dojo_starter", @"actions")
                 .with_writer_of([dojo::utils::bytearray_hash(@"dojo_starter")].span())
-        ].span()
+        ]
+            .span()
     }
 
     #[test]
@@ -76,7 +81,7 @@ use dojo::model::{ModelStorage, ModelValueStorage, ModelStorageTest};
         let initial_position: Position = world.read_model(caller);
 
         assert(
-            initial_position.vec.x == 10 && initial_position.vec.y == 10, 'wrong initial position'
+            initial_position.vec.x == 10 && initial_position.vec.y == 10, 'wrong initial position',
         );
 
         actions_system.move(Direction::Right(()).into());
