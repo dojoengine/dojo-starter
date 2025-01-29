@@ -2,7 +2,7 @@ use dojo_starter::models::{Direction, Position};
 
 // define the interface
 #[starknet::interface]
-trait IActions<T> {
+pub trait IActions<T> {
     fn spawn(ref self: T);
     fn move(ref self: T, direction: Direction);
 }
@@ -12,9 +12,9 @@ trait IActions<T> {
 pub mod actions {
     use super::{IActions, Direction, Position, next_position};
     use starknet::{ContractAddress, get_caller_address};
-    use dojo_starter::models::{Vec2, Moves, DirectionsAvailable};
+    use dojo_starter::models::{Vec2, Moves};
 
-    use dojo::model::{ModelStorage, ModelValueStorage};
+    use dojo::model::{ModelStorage};
     use dojo::event::EventStorage;
 
     #[derive(Copy, Drop, Serde)]
@@ -40,7 +40,7 @@ pub mod actions {
 
             // 1. Move the player's position 10 units in both the x and y direction.
             let new_position = Position {
-                player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 }
+                player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 },
             };
 
             // Write the new position to the world.
@@ -48,7 +48,7 @@ pub mod actions {
 
             // 2. Set the player's remaining moves to 100.
             let moves = Moves {
-                player, remaining: 100, last_direction: Option::None, can_move: true
+                player, remaining: 100, last_direction: Option::None, can_move: true,
             };
 
             // Write the new moves to the world.
@@ -66,8 +66,10 @@ pub mod actions {
             // Retrieve the player's current position and moves data from the world.
             let position: Position = world.read_model(player);
             let mut moves: Moves = world.read_model(player);
-            // if player hasn't spawn, read returns model default values. This leads to sub overflow afterwards.
-            // Plus it's generally considered as a good pratice to fast-return on matching conditions.
+            // if player hasn't spawn, read returns model default values. This leads to sub overflow
+            // afterwards.
+            // Plus it's generally considered as a good pratice to fast-return on matching
+            // conditions.
             if !moves.can_move {
                 return;
             }
@@ -111,7 +113,7 @@ fn next_position(mut position: Position, direction: Option<Direction>) -> Positi
             Direction::Right => { position.vec.x += 1; },
             Direction::Up => { position.vec.y -= 1; },
             Direction::Down => { position.vec.y += 1; },
-        }
+        },
     };
     position
 }

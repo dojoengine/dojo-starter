@@ -39,7 +39,7 @@ pub enum Direction {
 #[derive(Copy, Drop, Serde, IntrospectPacked, Debug)]
 pub struct Vec2 {
     pub x: u32,
-    pub y: u32
+    pub y: u32,
 }
 
 
@@ -79,7 +79,7 @@ impl Vec2Impl of Vec2Trait {
 
 #[cfg(test)]
 mod tests {
-    use super::{Position, Vec2, Vec2Trait};
+    use super::{Vec2, Vec2Trait};
 
     #[test]
     fn test_vec_is_zero() {
