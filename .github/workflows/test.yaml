@@ -9,10 +9,14 @@ on:
 jobs:
   sozo-test:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/dojoengine/dojo-dev:v1.1.1
+    env:
+      DOJO_VERSION: v1.1.1
     steps:
       - uses: actions/checkout@v3
+      - run: |
+          curl -L https://install.dojoengine.org | bash
+          source ~/.bashrc
+          dojoup -v ${{ env.DOJO_VERSION }}
       - run: |
           sozo build
           sozo test
