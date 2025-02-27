@@ -1,0 +1,45 @@
+services:
+  katana:
+    build: .
+    command: >
+      /bin/sh -c '
+      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*"
+      '
+    ports:
+      - 5050:5050
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:5050"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  sozo-migrate:
+    build: .
+    volumes:
+      - ./:/app
+    depends_on:
+      katana:
+        condition: service_healthy
+    command: ["/bin/sh", "-c", "cd /app && sozo migrate"]
+    restart: on-failure
+
+  torii:
+    build: .
+    command: >
+      /bin/sh -c '
+      world_address=$$(cat /app/manifest_dev.json | jq -r .world.address) &&
+      torii -w $$world_address --http.cors_origins "*" --rpc http://katana:5050 --http.addr 0.0.0.0
+      '
+    volumes:
+      - ./manifest_dev.json:/app/manifest_dev.json
+    ports:
+      - 8080:8080
+      - 9090:9090
+    depends_on:
+      sozo-migrate:
+        condition: service_completed_successfully
+      katana:
+        condition: service_healthy
+    restart: on-failure
+
+
