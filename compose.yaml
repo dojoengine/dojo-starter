@@ -20,7 +20,7 @@ services:
     depends_on:
       katana:
         condition: service_healthy
-    command: ["/bin/sh", "-c", "cd /app && sozo migrate"]
+    command: ["/bin/sh", "-c", "cd /app && sozo migrate --rpc-url http://katana:5050"]
     restart: on-failure
 
   torii:

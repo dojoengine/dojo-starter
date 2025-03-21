@@ -50,6 +50,14 @@ sozo migrate
 torii --world <WORLD_ADDRESS> --http.cors_origins "*"
 ```
 
+## Docker
+You can start stack using docker compose. [Here are the installation instruction](https://docs.docker.com/engine/install/)
+
+```bash
+docker compose up
+```
+You'll get all services logs in the same terminal instance. Whenever you want to stop just ctrl+c
+
 ---
 
 ## Contribution
