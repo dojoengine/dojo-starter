@@ -3,7 +3,7 @@ services:
     build: .
     command: >
       /bin/sh -c '
-      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*"
+      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*" --cartridge.paymaster
       '
     ports:
       - 5050:5050
@@ -28,10 +28,11 @@ services:
     command: >
       /bin/sh -c '
       world_address=$$(cat /app/manifest_dev.json | jq -r .world.address) &&
-      torii -w $$world_address --http.cors_origins "*" --rpc http://katana:5050 --http.addr 0.0.0.0
+      torii -w $$world_address --http.cors_origins "*" --rpc http://katana:5050 --http.addr 0.0.0.0 --config /app/torii_dev.toml
       '
     volumes:
       - ./manifest_dev.json:/app/manifest_dev.json
+      - ./torii_dev.toml:/app/torii_dev.toml
     ports:
       - 8080:8080
       - 9090:9090

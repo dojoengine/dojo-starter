@@ -10,12 +10,12 @@ jobs:
   sozo-test:
     runs-on: ubuntu-latest
     env:
-      DOJO_VERSION: v1.3.1
+      DOJO_VERSION: v1.4.0
     steps:
       - uses: actions/checkout@v3
       - uses: software-mansion/setup-scarb@v1
         with:
-          scarb-version: "2.9.2"
+          scarb-version: "2.9.4"
       - run: |
           curl -L https://install.dojoengine.org | bash
           /home/runner/.config/.dojo/bin/dojoup -v ${{ env.DOJO_VERSION }}
