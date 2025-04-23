@@ -1,0 +1,3 @@
+FROM ghcr.io/dojoengine/torii-dev:v1.5.0-alpha.1
+
+RUN apt update && apt install jq -y

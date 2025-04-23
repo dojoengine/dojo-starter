@@ -26,6 +26,14 @@ pub struct Position {
     pub vec: Vec2,
 }
 
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct PositionCount {
+    #[key]
+    pub identity: ContractAddress,
+    pub positition: Span<(u8, u128)>,
+}
+
 
 #[derive(Serde, Copy, Drop, Introspect, PartialEq, Debug)]
 pub enum Direction {

@@ -1,0 +1,3 @@
+FROM ghcr.io/dojoengine/katana:v1.5.0-alpha.4
+
+RUN apt update && apt install curl jq -y
