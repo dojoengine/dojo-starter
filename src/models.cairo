@@ -31,7 +31,7 @@ pub struct Position {
 pub struct PositionCount {
     #[key]
     pub identity: ContractAddress,
-    pub positition: Span<(u8, u128)>,
+    pub position: Span<(u8, u128)>,
 }
 
 
