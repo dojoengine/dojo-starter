@@ -1,12 +1,16 @@
 services:
   katana:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: katana
     command: >
       /bin/sh -c '
-      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*" --cartridge.paymaster
+      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*" --cartridge.paymaster --explorer
       '
     ports:
       - 5050:5050
+      - 3001:3001
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:5050"]
       interval: 10s
@@ -14,33 +18,42 @@ services:
       retries: 5
 
   sozo-migrate:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dojo
     volumes:
       - ./:/app
     depends_on:
       katana:
         condition: service_healthy
-    command: ["/bin/sh", "-c", "cd /app && sozo migrate --rpc-url http://katana:5050"]
+    command:
+      [
+        "/bin/sh",
+        "-c",
+        "cd /app && /root/.dojo/bin/sozo migrate --rpc-url http://katana:5050",
+      ]
     restart: on-failure
 
   torii:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: torii
     command: >
       /bin/sh -c '
       world_address=$$(cat /app/manifest_dev.json | jq -r .world.address) &&
-      torii -w $$world_address --http.cors_origins "*" --rpc http://katana:5050 --http.addr 0.0.0.0 --config /app/torii_dev.toml
+      RUST_LOG=libp2p=DEBUG torii -w $$world_address --http.cors_origins "*" --rpc http://katana:5050 --http.addr 0.0.0.0 --config /app/torii_dev.toml
       '
     volumes:
       - ./manifest_dev.json:/app/manifest_dev.json
       - ./torii_dev.toml:/app/torii_dev.toml
     ports:
       - 8080:8080
-      - 9090:9090
+      - 9090-9092:9090-9092
     depends_on:
       sozo-migrate:
         condition: service_completed_successfully
       katana:
         condition: service_healthy
     restart: on-failure
-
-
