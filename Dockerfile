@@ -1,4 +1,4 @@
-FROM ghcr.io/dojoengine/dojo:v1.5.0-alpha.2 AS dojo
+FROM ghcr.io/dojoengine/dojo:v1.5.0 AS dojo
 
 RUN apt update && apt install curl jq -y
 
