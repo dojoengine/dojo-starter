@@ -1,6 +1,6 @@
 [package]
 cairo-version = "=2.10.1"
-name = "dojo_starter"
+name = "jokers_of_neon_profile"
 version = "1.5.0"
 edition = "2024_07"
 

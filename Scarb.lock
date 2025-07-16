@@ -23,7 +23,7 @@ version = "2.10.1"
 source = "git+https://github.com/dojoengine/dojo?tag=v1.5.0#812f17c9c57fd057d0bf1e648a591ea0ca9ea718"
 
 [[package]]
-name = "dojo_starter"
+name = "jokers_of_neon_profile"
 version = "1.5.0"
 dependencies = [
  "dojo",

@@ -1,102 +1,85 @@
-use starknet::{ContractAddress};
-
-#[derive(Copy, Drop, Serde, Debug)]
-#[dojo::model]
-pub struct Moves {
-    #[key]
-    pub player: ContractAddress,
-    pub remaining: u8,
-    pub last_direction: Option<Direction>,
-    pub can_move: bool,
-}
+use starknet::ContractAddress;
 
 #[derive(Drop, Serde, Debug)]
 #[dojo::model]
-pub struct DirectionsAvailable {
+pub struct Profile {
     #[key]
-    pub player: ContractAddress,
-    pub directions: Array<Direction>,
+    pub address: ContractAddress,
+    pub username: ByteArray,
+    pub xp: u256,
+    pub level: u32,
+    pub available_games: u8,
+    pub max_available_games: u8,
+    pub daily_streak: u16,
+    pub banned: bool,
+    pub badges_ids: Span<u32>,
 }
 
 #[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
-pub struct Position {
+pub struct PlayerStats {
     #[key]
-    pub player: ContractAddress,
-    pub vec: Vec2,
+    pub address: ContractAddress,
+    // Games
+    pub games_played: u32,
+    pub games_won: u32,
+    // Plays
+    pub high_card_played: u32,
+    pub pair_played: u32,
+    pub two_pair_played: u32,
+    pub three_of_a_kind_played: u32,
+    pub four_of_a_kind_played: u32,
+    pub five_of_a_kind_played: u32,
+    pub full_house_played: u32,
+    pub flush_played: u32,
+    pub straight_played: u32,
+    pub straight_flush_played: u32,
+    pub royal_flush_played: u32,
+    // Store
+    pub loot_boxes_purchased: u32,
+    pub cards_purchased: u32,
+    pub specials_purchased: u32,
+    pub power_ups_purchased: u32,
+    pub level_ups_purchased: u32,
+    pub modifiers_purchased: u32,
 }
 
 #[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
-pub struct PositionCount {
+pub struct Inventory {
     #[key]
-    pub identity: ContractAddress,
-    pub position: Span<(u8, u128)>,
+    pub address: ContractAddress,
+    pub items_quantity: u32,
+    pub available_slots: u32,
 }
 
-
-#[derive(Serde, Copy, Drop, Introspect, PartialEq, Debug)]
-pub enum Direction {
-    Left,
-    Right,
-    Up,
-    Down,
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct InventoryItem {
+    #[key]
+    pub address: ContractAddress,
+    #[key]
+    pub slot: u32,
+    pub item_id: u32,
+    pub quantity: u32,
 }
 
-
-#[derive(Copy, Drop, Serde, IntrospectPacked, Debug)]
-pub struct Vec2 {
-    pub x: u32,
-    pub y: u32,
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct SeasonProgress {
+    #[key]
+    pub address: ContractAddress,
+    #[key]
+    pub season_id: u32,
+    pub season_xp: u256,
+    pub has_season_pass: bool,
+    pub claimable_rewards_id: Span<u32>,
 }
 
-
-impl DirectionIntoFelt252 of Into<Direction, felt252> {
-    fn into(self: Direction) -> felt252 {
-        match self {
-            Direction::Left => 1,
-            Direction::Right => 2,
-            Direction::Up => 3,
-            Direction::Down => 4,
-        }
-    }
-}
-
-impl OptionDirectionIntoFelt252 of Into<Option<Direction>, felt252> {
-    fn into(self: Option<Direction>) -> felt252 {
-        match self {
-            Option::None => 0,
-            Option::Some(d) => d.into(),
-        }
-    }
-}
-
-#[generate_trait]
-impl Vec2Impl of Vec2Trait {
-    fn is_zero(self: Vec2) -> bool {
-        if self.x - self.y == 0 {
-            return true;
-        }
-        false
-    }
-
-    fn is_equal(self: Vec2, b: Vec2) -> bool {
-        self.x == b.x && self.y == b.y
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::{Vec2, Vec2Trait};
-
-    #[test]
-    fn test_vec_is_zero() {
-        assert(Vec2Trait::is_zero(Vec2 { x: 0, y: 0 }), 'not zero');
-    }
-
-    #[test]
-    fn test_vec_is_equal() {
-        let position = Vec2 { x: 420, y: 0 };
-        assert(position.is_equal(Vec2 { x: 420, y: 0 }), 'not equal');
-    }
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct Owners {
+    #[key]
+    pub key: felt252,
+    pub owners: Span<ContractAddress>,
 }
