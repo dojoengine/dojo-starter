@@ -10,7 +10,7 @@ jobs:
   sozo-test:
     runs-on: ubuntu-latest
     env:
-      DOJO_VERSION: v1.5.0-alpha.2
+      DOJO_VERSION: v1.6.0-alpha.1-alpha.2
     steps:
       - uses: actions/checkout@v3
       - uses: software-mansion/setup-scarb@v1

@@ -1,4 +1,5 @@
-use crate::models::{Owners, Profile, PlayerStats, InventoryItem, Inventory, SeasonProgress};
+use crate::models::{Owners, InventoryItem, Inventory, SeasonProgress};
+use jokers_of_neon_lib::models::external::profile::{PlayerStats, Profile};
 use dojo::{model::ModelStorage, world::WorldStorage};
 use starknet::ContractAddress;
 
