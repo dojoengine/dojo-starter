@@ -25,7 +25,7 @@ source = "git+https://github.com/dojoengine/dojo?tag=v1.6.0-alpha.1#054623bbf939
 [[package]]
 name = "jokers_of_neon_lib"
 version = "0.19.0"
-source = "git+https://github.com/caravana-studio/jokers-of-neon-lib?branch=add-models-nft-profile#21ad10828d23438c18e35950f57b30758fabb110"
+source = "git+https://github.com/caravana-studio/jokers-of-neon-lib?branch=develop#4d71dce9a3ab96e3e5820c69176b358a39e6ab89"
 dependencies = [
  "dojo",
 ]

@@ -22,8 +22,7 @@ trait IJokersProfile<T> {
 pub mod profile_system {
     use super::IJokersProfile;
     use crate::{
-        utils::contains_address, models::{InventoryItem, SeasonProgress},
-        store::StoreTrait,
+        utils::contains_address, models::{InventoryItem, SeasonProgress}, store::StoreTrait,
     };
     use jokers_of_neon_lib::models::external::profile::{PlayerStats, Profile};
     use starknet::ContractAddress;
