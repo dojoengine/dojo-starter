@@ -1,76 +1,23 @@
-![Dojo Starter](./assets/cover.png)
+En core ya tuve que haber ejecutado los comandos make katana y make setup.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/mark-dark.svg">
-  <img alt="Dojo logo" align="right" width="120" src=".github/mark-light.svg">
-</picture>
+Ahora vamos a hacer deploy de profile con el comando make setup.
 
-<a href="https://x.com/ohayo_dojo">
-<img src="https://img.shields.io/twitter/follow/dojostarknet?style=social"/>
-</a>
-<a href="https://github.com/dojoengine/dojo/stargazers">
-<img src="https://img.shields.io/github/stars/dojoengine/dojo?style=social"/>
-</a>
+De los logs de profile copiar el address del profile_system
 
-[![discord](https://img.shields.io/badge/join-dojo-green?logo=discord&logoColor=white)](https://discord.com/invite/dojoengine)
-[![Telegram Chat][tg-badge]][tg-url]
+jokers_of_neon_profile-profile_system - 0x02ff6dcdc9f8bcc89183b33e14d9739d871187626b48dc18ebaebe8ef81f22b5
 
-[tg-badge]: https://img.shields.io/endpoint?color=neon&logo=telegram&label=chat&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fdojoengine
-[tg-url]: https://t.me/dojoengine
+Revisar en los logs por si cambio
 
-# Dojo Starter: Official Guide
+Ahora ejecutar en core el siguiente comando 
 
-A quickstart guide to help you build and deploy your first Dojo provable game.
+sozo execute profile_manager register_address_profile \
+    $profile_address \
+    --wait \
+    --world $world_address
 
-Read the full tutorial [here](https://dojoengine.org/tutorial/dojo-starter).
+Por ejemplo: 
 
-## Running Locally
-
-#### Terminal one (Make sure this is running)
-
-```bash
-# Run Katana
-katana --dev --dev.no-fee
-```
-
-#### Terminal two
-
-```bash
-# Build the example
-sozo build
-
-# Inspect the world
-sozo inspect
-
-# Migrate the example
-sozo migrate
-
-# Start Torii
-# Replace <WORLD_ADDRESS> with the address of the deployed world from the previous step
-torii --world <WORLD_ADDRESS> --http.cors_origins "*"
-```
-
-## Docker
-You can start stack using docker compose. [Here are the installation instruction](https://docs.docker.com/engine/install/)
-
-```bash
-docker compose up
-```
-You'll get all services logs in the same terminal instance. Whenever you want to stop just ctrl+c
-
----
-
-## Contribution
-
-1. **Report a Bug**
-
-    - If you think you have encountered a bug, and we should know about it, feel free to report it [here](https://github.com/dojoengine/dojo-starter/issues) and we will take care of it.
-
-2. **Request a Feature**
-
-    - You can also request for a feature [here](https://github.com/dojoengine/dojo-starter/issues), and if it's viable, it will be picked for development.
-
-3. **Create a Pull Request**
-    - It can't get better then this, your pull request will be appreciated by the community.
-
-Happy coding!
+sozo execute profile_manager register_address_profile \
+    0x02ff6dcdc9f8bcc89183b33e14d9739d871187626b48dc18ebaebe8ef81f22b5 \
+    --wait \
+    --world 0x5d151da3085badd054db02d2c0891dcdc6a98538ea0e86edea0e45ea70df72d

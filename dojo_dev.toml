@@ -13,12 +13,15 @@ account_address = "0x6677fe62ee39c7b07401f754138502bab7fac99d2d3c5d37df7d1c6fab1
 private_key = "0x3e3979c1ed728490308054fe357a9f49cf67f80f9721f44cc57235129e090f4"
 
 [writers]
-
 "jokers_of_neon_profile" = [
     "jokers_of_neon_profile-profile_system",
+    "jokers_of_neon_profile-xp_system",
 ]
 
 [init_call_args]
 "jokers_of_neon_profile-profile_system" = [
+    "0x6677fe62ee39c7b07401f754138502bab7fac99d2d3c5d37df7d1c6fab10819",
+]
+"jokers_of_neon_profile-xp_system" = [
     "0x6677fe62ee39c7b07401f754138502bab7fac99d2d3c5d37df7d1c6fab10819",
 ]

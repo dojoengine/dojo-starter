@@ -19,3 +19,6 @@ rpc_url = "https://api.cartridge.gg/x/starknet/mainnet"
 "jokers_of_neon_profile-profile_system" = [
     "0x6677fe62ee39c7b07401f754138502bab7fac99d2d3c5d37df7d1c6fab10819",
 ]
+"jokers_of_neon_profile-xp_system" = [
+    "0x6677fe62ee39c7b07401f754138502bab7fac99d2d3c5d37df7d1c6fab10819",
+]

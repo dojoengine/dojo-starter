@@ -21,3 +21,6 @@ private_key = "0x07222e994e5fd0379d6224d8e7412c01c2008b993fb6b81f3f8dca5465d9123
 "jokers_of_neon_profile-profile_system" = [
     "0x6677fe62ee39c7b07401f754138502bab7fac99d2d3c5d37df7d1c6fab10819",
 ]
+"jokers_of_neon_profile-xp_system" = [
+    "0x6677fe62ee39c7b07401f754138502bab7fac99d2d3c5d37df7d1c6fab10819",
+]
