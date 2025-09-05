@@ -20,8 +20,8 @@ jobs:
       - run: |
           asdf plugin add sozo https://github.com/dojoengine/asdf-sozo.git
           asdf install
-          /home/runner/.config/.dojo/bin/sozo build
-          /home/runner/.config/.dojo/bin/sozo test
+          sozo build
+          sozo test
           if [[ `git status --porcelain` ]]; then
             echo The git repo is dirty
             echo "Make sure to run \"sozo build\" after changing Scarb.toml and commit Scarb.lock"
