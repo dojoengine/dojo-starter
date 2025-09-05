@@ -1,23 +1,23 @@
 #[cfg(test)]
 mod tests {
-    use dojo_cairo_test::WorldStorageTestTrait;
     use dojo::model::{ModelStorage, ModelStorageTest};
     use dojo::world::WorldStorageTrait;
     use dojo_cairo_test::{
-        spawn_test_world, NamespaceDef, TestResource, ContractDefTrait, ContractDef,
+        ContractDef, ContractDefTrait, NamespaceDef, TestResource, WorldStorageTestTrait,
+        spawn_test_world,
     };
-
-    use dojo_starter::systems::actions::{actions, IActionsDispatcher, IActionsDispatcherTrait};
-    use dojo_starter::models::{Position, m_Position, Moves, m_Moves, Direction};
+    use dojo_starter::models::{Direction, Moves, Position, m_Moves, m_Position};
+    use dojo_starter::systems::actions::{IActionsDispatcher, IActionsDispatcherTrait, actions};
+    use starknet::ContractAddress;
 
     fn namespace_def() -> NamespaceDef {
         let ndef = NamespaceDef {
             namespace: "dojo_starter",
             resources: [
-                TestResource::Model(m_Position::TEST_CLASS_HASH),
-                TestResource::Model(m_Moves::TEST_CLASS_HASH),
-                TestResource::Event(actions::e_Moved::TEST_CLASS_HASH),
-                TestResource::Contract(actions::TEST_CLASS_HASH),
+                TestResource::Model(m_Position::TEST_CLASS_HASH.into()),
+                TestResource::Model(m_Moves::TEST_CLASS_HASH.into()),
+                TestResource::Event(actions::e_Moved::TEST_CLASS_HASH.into()),
+                TestResource::Contract(actions::TEST_CLASS_HASH.into()),
             ]
                 .span(),
         };
@@ -36,7 +36,7 @@ mod tests {
     #[test]
     fn test_world_test_set() {
         // Initialize test environment
-        let caller = starknet::contract_address_const::<0x0>();
+        let caller: ContractAddress = 0.try_into().unwrap();
         let ndef = namespace_def();
 
         // Register the resources.
@@ -67,7 +67,7 @@ mod tests {
     #[test]
     #[available_gas(30000000)]
     fn test_move() {
-        let caller = starknet::contract_address_const::<0x0>();
+        let caller: ContractAddress = 0.try_into().unwrap();
 
         let ndef = namespace_def();
         let mut world = spawn_test_world([ndef].span());
@@ -84,10 +84,10 @@ mod tests {
             initial_position.vec.x == 10 && initial_position.vec.y == 10, 'wrong initial position',
         );
 
-        actions_system.move(Direction::Right(()).into());
+        actions_system.move(Direction::Right.into());
 
         let moves: Moves = world.read_model(caller);
-        let right_dir_felt: felt252 = Direction::Right(()).into();
+        let right_dir_felt: felt252 = Direction::Right.into();
 
         assert(moves.remaining == initial_moves.remaining - 1, 'moves is wrong');
         assert(moves.last_direction.unwrap().into() == right_dir_felt, 'last direction is wrong');

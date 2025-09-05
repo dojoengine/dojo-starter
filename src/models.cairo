@@ -1,4 +1,4 @@
-use starknet::{ContractAddress};
+use starknet::ContractAddress;
 
 #[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
@@ -34,17 +34,16 @@ pub struct PositionCount {
     pub position: Span<(u8, u128)>,
 }
 
-
-#[derive(Serde, Copy, Drop, Introspect, PartialEq, Debug)]
+#[derive(Serde, Copy, Drop, Introspect, PartialEq, Debug, DojoStore, Default)]
 pub enum Direction {
+    #[default]
     Left,
     Right,
     Up,
     Down,
 }
 
-
-#[derive(Copy, Drop, Serde, IntrospectPacked, Debug)]
+#[derive(Copy, Drop, Serde, IntrospectPacked, Debug, DojoStore)]
 pub struct Vec2 {
     pub x: u32,
     pub y: u32,
