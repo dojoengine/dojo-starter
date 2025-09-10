@@ -4,7 +4,7 @@ version = 1
 [[package]]
 name = "dojo"
 version = "1.7.0-alpha.2"
-source = "git+https://github.com/dojoengine/dojo?tag=v1.7.0-alpha.2#a064752fff355f325cf0b00828d236b399333432"
+source = "git+https://github.com/dojoengine/dojo?tag=v1.7.0-alpha.3#98231fbe8a2f2f001e162bac8adea667b129bc5b"
 dependencies = [
  "dojo_macros",
 ]
@@ -12,7 +12,7 @@ dependencies = [
 [[package]]
 name = "dojo_cairo_test"
 version = "1.7.0-alpha.2"
-source = "git+https://github.com/dojoengine/dojo?tag=v1.7.0-alpha.2#a064752fff355f325cf0b00828d236b399333432"
+source = "git+https://github.com/dojoengine/dojo?tag=v1.7.0-alpha.3#98231fbe8a2f2f001e162bac8adea667b129bc5b"
 dependencies = [
  "dojo",
 ]
@@ -20,11 +20,11 @@ dependencies = [
 [[package]]
 name = "dojo_macros"
 version = "1.7.0-alpha.2"
-source = "git+https://github.com/dojoengine/dojo?tag=v1.7.0-alpha.2#a064752fff355f325cf0b00828d236b399333432"
+source = "git+https://github.com/dojoengine/dojo?tag=v1.7.0-alpha.3#98231fbe8a2f2f001e162bac8adea667b129bc5b"
 
 [[package]]
 name = "dojo_starter"
-version = "1.7.0-alpha.2"
+version = "1.7.0-alpha.3"
 dependencies = [
  "dojo",
  "dojo_cairo_test",
