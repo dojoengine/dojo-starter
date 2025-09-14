@@ -31,7 +31,7 @@ services:
       [
         "/bin/sh",
         "-c",
-        "cd /app && /root/.dojo/bin/sozo migrate --rpc-url http://katana:5050",
+        "cd /app && /root/.dojo/bin/sozo build && /root/.dojo/bin/sozo migrate --rpc-url http://katana:5050",
       ]
     restart: on-failure
 
