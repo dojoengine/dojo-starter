@@ -31,3 +31,5 @@ dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.6.0-al
 [profile.slot]
 [profile.testnet]
 [profile.mainnet]
+
+[lib]
