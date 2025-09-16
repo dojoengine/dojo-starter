@@ -4,7 +4,7 @@ use crate::models::{
 };
 
 #[starknet::interface]
-trait IXPSystem<T> {
+pub trait IXPSystem<T> {
     fn add_daily_mission_xp(ref self: T, address: ContractAddress, mission_type: MissionDifficulty);
     fn add_level_completion_xp(ref self: T, address: ContractAddress, level: u32);
 

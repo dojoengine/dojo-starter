@@ -4,7 +4,7 @@ use jokers_of_neon_lib::models::external::profile::{PlayerStats, Profile};
 
 
 #[starknet::interface]
-trait IJokersProfile<T> {
+pub trait IJokersProfile<T> {
     fn create_profile(ref self: T, address: ContractAddress, username: ByteArray);
     fn add_stats(ref self: T, player_stats: PlayerStats);
 
