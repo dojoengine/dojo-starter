@@ -10,12 +10,12 @@ jobs:
   sozo-test:
     runs-on: ubuntu-latest
     env:
-      DOJO_VERSION: v1.7.0-alpha.2
+      DOJO_VERSION: v1.7.0-alpha.4
     steps:
       - uses: actions/checkout@v3
       - uses: software-mansion/setup-scarb@v1
         with:
-          scarb-version: "dev-2025-09-05"
+          scarb-version: "2.12.2"
       - uses: asdf-vm/actions/setup@v4
       - run: |
           asdf plugin add sozo https://github.com/dojoengine/asdf-sozo.git
