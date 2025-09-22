@@ -1,20 +1,20 @@
 [package]
 cairo-version = "2.12.2"
 name = "dojo_starter"
-version = "1.7.0-alpha.4"
+version = "1.7.0"
 edition = "2024_07"
 
 [cairo]
 sierra-replace-ids = true
 
 [scripts]
-migrate = "sozo build && sozo migrate"                      # scarb run migrate
-spawn = "sozo execute dojo_starter-actions spawn --wait"    # scarb run spawn
-move = "sozo execute dojo_starter-actions move -c 1 --wait" # scarb run move
+migrate = "sozo build && sozo migrate"
+spawn = "sozo execute dojo_starter-actions spawn --wait"
+move = "sozo execute dojo_starter-actions move -c 1 --wait"
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.7.0-alpha.4" }
-dojo_macros = { git = "https://github.com/dojoengine/dojo", tag = "v1.7.0-alpha.4" }
+dojo = "1.7.0"
+dojo_cairo_macros = "1.7.0"
 starknet = "2.12.2"
 
 [[target.starknet-contract]]
@@ -22,4 +22,4 @@ build-external-contracts = ["dojo::world::world_contract::world"]
 
 [dev-dependencies]
 cairo_test = "2.12.2"
-dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.7.0-alpha.4" }
+dojo_cairo_test = "1.7.0"
