@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: software-mansion/setup-scarb@v1
         with:
-          scarb-version: "2.12.2"
+          scarb-version: "2.13.1"
       # Setup and test with specified Dojo version
       - run: curl -L https://install.dojoengine.org | bash
       - run: /home/runner/.config/.dojo/dojoup/dojoup install ${{ env.DOJO_VERSION }}
