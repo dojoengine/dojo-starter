@@ -3,31 +3,31 @@ version = 1
 
 [[package]]
 name = "dojo"
-version = "1.7.1"
+version = "1.7.2"
 source = "registry+https://scarbs.xyz/"
-checksum = "sha256:b792d9c526269f5265dd89f063da5db8daebb461f2dec2cdb712f420187b39a8"
+checksum = "sha256:e7c7f3c7e7ca89491aadabea9ed97cad5ff8a001ec7621afa1cadd257d2f7283"
 dependencies = [
  "dojo_cairo_macros",
 ]
 
 [[package]]
 name = "dojo_cairo_macros"
-version = "1.7.1"
+version = "1.8.0"
 source = "registry+https://scarbs.xyz/"
-checksum = "sha256:18059a9ac9ec2c0c708baad382728a99970b621b1eaab780fd9a8ec2dc975c98"
+checksum = "sha256:c4aa04037a0c5029b05b78229dae22bf02269b9912e8a8c12f8af34aa6b72051"
 
 [[package]]
 name = "dojo_cairo_test"
-version = "1.7.1"
+version = "1.7.2"
 source = "registry+https://scarbs.xyz/"
-checksum = "sha256:93fba9557e34d0aa0903092e8f32560b0ce72b66dceea2a51fd571b1217351e3"
+checksum = "sha256:07468e70a3ead06a352b3cc2fb52a88447b921cdc26474290950f3f95ce4f295"
 dependencies = [
  "dojo",
 ]
 
 [[package]]
 name = "dojo_starter"
-version = "1.7.1"
+version = "1.7.2"
 dependencies = [
  "dojo",
  "dojo_cairo_test",
